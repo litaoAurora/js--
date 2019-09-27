@@ -699,10 +699,10 @@ console.log(getQuery(location.href));
 
 ```javascript
 var box = document.getElementById('box');
-console.log(box.offsetParent);
-console.log(box.offsetLeft);
-console.log(box.offsetTop);
-console.log(box.offsetWidth);
+console.log(box.offsetParent); // 有定位的父盒子， 是盒子
+console.log(box.offsetLeft);// 左偏移量
+console.log(box.offsetTop); // Top 偏移量
+console.log(box.offsetWidth); // 整个盒子的 宽度
 console.log(box.offsetHeight);
 ```
 
@@ -712,10 +712,10 @@ console.log(box.offsetHeight);
 
 ```javascript
 var box = document.getElementById('box');
-console.log(box.clientLeft);
-console.log(box.clientTop);
-console.log(box.clientWidth);
-console.log(box.clientHeight);
+console.log(box.clientLeft);// 盒子的 left boreder宽度
+console.log(box.clientTop);// 盒子的 top border 宽度
+console.log(box.clientWidth); // css 所设置的宽度
+console.log(box.clientHeight); // css 所设置的高度
 ```
 
 ![1498743269100](media/1498743269100.png)
@@ -725,9 +725,9 @@ console.log(box.clientHeight);
 ```javascript
 - document 的滚动
 var box = document.getElementById('box');
-console.log(box.scrollLeft)
-console.log(box.scrollTop)
-console.log(box.scrollWidth)
+console.log(box.scrollLeft); // 子盒的滚动条到父盒子顶部的距离
+console.log(box.scrollTop); 
+console.log(box.scrollWidth); // 
 console.log(box.scrollHeight)
 
 - window 的滚动
@@ -791,7 +791,7 @@ window.innerWidth    最新浏览器
 document.documentElement.clientWidth  标准浏览器
 document.body.clientWidth    怪异浏览器
 
-var keshi =  window.innerWidth || 							document.documentElement.clientWidth  || document.body.clientWidth；
+var keshi =  window.innerWidth || 							document.documentElement.clientWidth[offsetWidth]  || document.body.clientWidth；
 
 
 #### window.onreset
@@ -802,7 +802,9 @@ var keshi =  window.innerWidth || 							document.documentElement.clientWidth  |
 - 冒泡  
 - 捕获
 
-#### 获取页内，引用样式
-obj.currentStyle[attr];
-window.getComputeStyle(obj,null)[attr];
+#### 获取页内，引用样式 | 获取样式
+obj.currentStyle[attr]; // 低版本的 获取当前渲染的样式
+window.getComputeStyle(element[,pseudo])[attr];
+  - pseudo 伪元素，如果有的化话
+  - 样的属性
 

@@ -255,7 +255,7 @@ console.log(str.substring(-2,str.length),'end'); // st
 
 
 
-- 因为 。length 比长度 大一。 故  不包含endIndex 
+#### 正常的检索， 查询， 断节。
 
 ```javascript
 var arr = [1,2,3]
@@ -296,7 +296,33 @@ arr.entries(); // 返回一个新的迭代器对象
 
 
 
+#### 遍历， 筛选， 循环
+
+- 若你需要提前终止循环，你可以使用： 
+
 ```javascript
+
+简单循环
+for...of 循环
+Array.prototype.every()
+Array.prototype.some()
+Array.prototype.find()
+Array.prototype.findIndex()
+这些数组方法可以对数组元素判断，以便确定是否需要继续遍历：every()，some()，find()，findIndex()
+```
+
+
+
+
+
+
+
+```javascript
+
+arr.forEach(callback[, thisArg]); // callback(currentValue, currentIndex, arr)
+		// thisArg 当执行函数回调函数是用作 this 的值。 缺省值是 null undefined 。 
+		// return undefined ;
+		// forEach不直接改变调用它的对象，但是对象可能会被callback 。 
 
 
 
