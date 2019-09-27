@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div xmlns="http://www.w3.org/1999/Math/MathMl">x3/x</div>
+    <div id='test1' class='cla'>
+        <div class='ff'></div>
+        <div class='ff'></div>
+        <div class='ff'></div>
+        <p></p>
+
+    </div>
+
+    <div id='top'>fd
+        <div id='left'></div>
+
+    </div>
+
+    <script>
+        let t = document.getElementById("top");
+        let idAttr = t.getAttributeNode("id");
+        console.log(idAttr.value == "top", idAttr)
+        let d = document.getElementById('test1');
+
+        console.log(d.attributes)
+        console.log(d.childNodes)
+        console.log(d.childNodes[0].nodeType, d.childNodes[0])
+        console.log(d.localName)
+
+        var a = document.getElementById('top');
+        a.onclick = function () {
+            console.log('a')
+        }
+
+        console.log(a.onclick)
+        console.log(a.cloneNode());
+    </script>
+</body>
+
+</html>
