@@ -13,7 +13,7 @@
 **点阵图** : ( 几何构建图形 )
 **格式** : png jpg(jpeg) svg webg
 
-## 颜色
+## 颜色 opacity 不透明度
 
 `color`
 

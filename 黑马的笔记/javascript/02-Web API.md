@@ -808,3 +808,115 @@ window.getComputeStyle(element[,pseudo])[attr];
   - pseudo 伪元素，如果有的化话
   - 样的属性
 
+
+
+## 事件
+> 在目标阶段的事件会触发该元素（即事件目标）上的所有监听器，而不在乎这个监听器到底在注册时》> useCapture 参数值是true还是false。
+
+> 
+
+<a href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">事件流 查看文档</a>
+
+> 我真正的了解事件的 顺序了， 首先： 触发事件时本身就是 父级先向下传递，
+>  到target 子元素， 传递的过程称"捕获"，
+> target 元素再把事件向上'冒泡'
+> 与 `useCapture` : Boolean，是否先与子元素触发事件。 true 则先， false 则在后 来理解。
+
+- `onclick` 同类事件会覆盖，而 addEventListener 则不会
+- `addEventListener(EventName(type), callback[,useCapture])`
+  - `useCapture` : Boolean，是否先与子元素触发事件。 true 则先， false 则 后
+  - `callback(e)` : `e : { eventphase : 0,1,2,3 }` 事件阶段
+  - 底层的累加叠加事件。"追加事件"
+  - 目标阶段
+  - 捕获阶段
+  - 冒泡阶段
+
+- `attachEvent("onclick",function)` (低版本做兼容性的 addEventListener)
+  - 后绑定的先执行。
+
+```javascript
+function test(var a = function(){console.log()}){}
+console.log(a)
+
+(var a = function(){};)
+console.log(a)
+
+```
+
+- mouseover : 当前盒子，或当前盒子的子盒子 ，都会触发,(事件冒泡)
+- mouseout : 当前盒子，或当前盒子的子盒子 ，都会触发, (事件冒泡)
+- mouseenter : 当前盒子
+- mouseout : 当前盒子
+- mousemove : 好东西， 移动 。
+- mousedown : 按下时 1
+- mouseup : 松开时  2
+- click : 完成整个 点击过程。 3 点击事件最后触发。有 两三百毫秒的延迟。
+
+- keydown, collback(e){ console.log(e.keyCode) }
+- keypress
+- keyup 
+- e.keyCode 可以查看 键对应的 acsii 码表。
+
+KeyboardEvent-》 keyCode
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent 键盘对象</a>
+
+- `scroll`  滚动事件 与 `srollTop` 等属性可以用
+- `resize` 浏览器窗体改变是触发
+- `hashchange` 锚链接改变时触发。**重** **虚拟dom**
+  - -> location.hash 
+  - 拿到 location.hash ,判断， 创建 innerHTML 虚拟DOM -> 单页面 操作。
+- `contextmenu`  : 上下文菜单
+  - `callback(e)` e.preventDefault(), -> 屏蔽浏览器的默认菜单。 prevent (阻止)
+  - **右键点击时 触发，覆盖了浏览器本来的 右键菜单栏**
+- `dblclick`  双击有间隔
+
+- blur : 可以出来光标的才行。
+- focus : 可以出来光标的才行。
+
+- input 
+- change
+
+## 事件对象 Event
+如
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent/MouseEvent">MouseEvent</a>
+
+- 有 `MouseEvent` 
+  - (继承于)UIEvent
+  - (继承于) Event
+- `button` 鼠标的那个按键按下的
+- `clientX` `clientY` **页面可视区**的鼠标点击位置 
+- `pageX` `pageY`  **整个页面 包含滚动的 scroll**
+- `offsetX` `offsetY`  **鼠标距离当前元素原点的位置**
+- `screenX` `screenY` **不知是浏览器， 是相对整个屏幕的距离**
+- `shiftKey` `altKey` `ctrlKey` **是否按住了shift,alt,ctrl键来点击鼠标**
+
+### 阻止事件冒泡,可以事件委托
+- stopPropagation 阻止传播
+  - cancelBubble (低版本)
+
+### 事件委托
+> 还未明白
+
+本来事件的顺序是捕获-> 传到目标元素(事件) -> 目标元素再将(事件)往上冒泡
+委托: 就是 在父元素中监听一次，通过 `target`找到目标事件`AT-TARGET`， 给他赋予动作
+- target || srcElement
+  - return Element(元素)
+
+```javascript
+// 大盒子(父盒子) parent
+var parent = document.getElementById('parent');
+
+parent.addEventListener('click',function(e){
+  var target = e.target || e.srcElement;
+  
+  switch (target.id){
+    case childoneId:
+      ...
+      break;
+    case childtwoId:
+      ...
+      break;
+  }
+})
+
+```
