@@ -122,6 +122,7 @@ let p  = `${name}`;
 - 核心是 转态的 转变
 - 有两种状态， 中间有时间相连     元素从一种样式逐渐改变为另一种的效果。
   - transition简写属性，用于在一个属性中设置四个过渡属性。	3
+    - all 表示 hover 中所有设定的样式
     - transition-property规定应用过渡的 CSS 属性的名称。3
     - transition-duration定义过渡效果花费的时间。默认是 0。3
     - transition-timing-function规定过渡效果的时间曲线。默认是 "ease"。3
@@ -326,6 +327,10 @@ href="./.....#id" -> 超链接路径 + 锚点
 <a href="https:www.baidu.com" target="iframeName值">
 <iframe src="https:www.baidu,com" name="target" >
 ```
+## form 表单里面的标签样式修改可以借助 label 标签来跳墙
+
+- 可以将 input 或 select 修改 visibility 设置为 hidden 
+  - 用 `label` 来修改 表单 radio CheckBox 的选中样式。
 
 ## form 表单
 > 单就标签来说 就只有 form 标签可以和后台 交互
@@ -344,7 +349,8 @@ size : 框的长度
 maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 ```
 > 设置单选按钮时 需要设置统一的 name 值 给与分组。
-> checked=checked;   设置一开始时默认值， 当 属性名和属性值相同时 属性值可以忽略不写
+- checked=checked;   设置一开始时默认值， 当 属性名和属性值相同时 属性值可以忽略不写
+  - checked -> 选中是 true, 没选是 false .
 ```html
 <input type="radio" name="1" value="man" >
 <input type="radio" name="1" value="women" >
@@ -468,7 +474,7 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 - `并集选择器` ： `div, p, {}`
 
 - 子代选择器 `div>p`
-- `相邻选择器`(同级选择器,同辈且是自己的下一个) `div+p` `div 和 p 在同一级`
+- `相邻选择器` `div+p` (同级选择器,同辈且(仅仅)是自己的下一个)  `div 和 p 在同一级`
 - `同辈选择器` `div~div`
 
 ## 伪类选择器
@@ -781,6 +787,9 @@ xml 只能有一个根标签,要求严谨，会报错
 - `letter-spacing` : `可以设置中文字符间距`
 - `word-spacing` : `可以设置英文单词之间的间距` `不管中英文只要有空格就可以设置`
 ### 特殊字符，实体字符
+<a href="https://www.cnblogs.com/fml1com/p/5149269.html">实体字符地址</a>
+
+- `\2713` √
 - & `&amp;` `&deg; 摄氏度` 
 - 正负号 `&plusmn;`
 - 乘号 `&times;`

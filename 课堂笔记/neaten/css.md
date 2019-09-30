@@ -66,8 +66,13 @@
    **外边距合并(margin collapsing 折叠)** - (前)bottom 和 (后)top 会取其大者。
    **外边距塌陷(top)**
    - 父级是个空元素或 .. 子元素 的 margin-top 会把父元素带走。
+2. 百分比 `%` : 是相对于 父盒子的宽度 (width),和 padding 一样
 
 ## padding (内填充)
+
+- width height
+- 当 百分比是 `%` 继承(相对于)父盒子的宽度。来说的。
+  - 一般应用于 parent 元素下的 img 元素。
 
 ## text (module 文本样式)
 
@@ -184,26 +189,30 @@
 1. z-index : integer(整数) 负数，正数
 
 ## display 和 visibility
-> display 指定了元素的显示类型, 取值有 out死的 inside listitem..
 
-1) display:none 渲染引擎不会渲染。
-**outside 外部样式 标准流的样式**
-1) display: block, inline;
-**inside 外部样式 标准流的样式**
-> flow flow-root table flex  grid ruby
-1) display: flow(流式布局) , table, flex, grid,ruby.
+> display 指定了元素的显示类型, 取值有 out 死的 inside listitem..
+
+1. display:none 渲染引擎不会渲染。
+   **outside 外部样式 标准流的样式**
+1. display: block, inline;
+   **inside 外部样式 标准流的样式**
+   > flow flow-root table flex grid ruby
+1. display: flow(流式布局) , table, flex, grid,ruby.
 
 **legacy 遗产**
-1) display : inline-block, inline-grid
+
+1. display : inline-block, inline-grid
 
 #### visibility
+
 > 影藏元素，而不更改 布局
 
-1) visibility : visible, hidden, collapse(表格中).
-#### visibility : hidden 和 display: none; 
+1. visibility : visible, hidden, collapse(表格中).
+
+#### visibility : hidden 和 display: none;
+
 > display: none; 渲染引擎不渲染
 > visibility : hidden . 只是隐藏。
-
 
 ## FBC block formatting context
 
@@ -222,8 +231,7 @@
 > 是浏览器理解错了。
 > 思路是: 不在同一个 BFC 就行。
 
-## overflow 
-
+## overflow
 
 > 定义当一个元素的内容太大而无法适应 BFC 时，该做什么。
 > <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow">MDN 查看</a>
@@ -234,20 +242,22 @@
 4. overflow : auto; 滚动条
 
 ## opacity 属于 color
+
 > 不透明度 0-1
 
-1) opacity: .5;
-**兼容 filter 0-100**
-1) `filter`: `alpha(opacity=50)`
+1. opacity: .5;
+   **兼容 filter 0-100**
+1. `filter`: `alpha(opacity=50)`
 
 ## 一些规则
 
-1) h1 一个页面只用一次
-2) p 标签内不能嵌套别的块级标签
-3) 
+1. h1 一个页面只用一次
+2. p 标签内不能嵌套别的块级标签
+3.
 
 ## 特殊字符，实体字符
-- & `&amp;` `&deg; 摄氏度` 
+
+- & `&amp;` `&deg; 摄氏度`
 - 正负号 `&plusmn;`
 - 乘号 `&times;`
 - 人民币 `&yen;`
