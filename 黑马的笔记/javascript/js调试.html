@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <div>\r几</div>
+    <div></div>
 
+    <script src="./js调试.js"></script>
     <script>
+        var a = Date.now();
+        var te = new Promise(function (resolve) {
 
-        var obj = {
-            a : ()=>{console.log(this, "oooo");},
-            b : post
-        };
+            var time = setInterval(() => {
+                console.log(a)
+                if (Date.now() - a >= 1000) {
+                    clearInterval(time)
+                    resolve('b')
+                }
+            }, 100)
 
+        });
+        te
+            .then(function (value) {
 
-        function post(){
-            var a = ()=>{console.log(this, 'defined this')};
-            a()
-            return ()=>{console.log(this,"return this")};
-        }
-
-        var p = obj.b();
-        p();
-
+                console.log(value)
+                return new Promise(function (resolve) {
+                    resolve('a')
+                })
+            })
+            .then(function (value) {
+                console.log(value)
+                return 'c'
+            }).then(function (value) {
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve('d')
+                    }, 3000)
+                })
+            }).then(function (value) {
+                console.log(value)
+            })
     </script>
 </body>
+
 </html>

@@ -6,10 +6,46 @@
 # inherit line
 
 ```
-  Eventtarget ->    Node   -> element -> HTMLElement(任何html元素)
-                           -> document (document.nodeType:9)
+  EventTarget ->    Node   -> element -> HTMLElement(任何html元素)  ↓
+                           -> document (document.nodeType:9)     document.documentElement 
                            -> Attr
+  (Event() 创建事件)Event  -> UIEvent ->  MouseEvent (给事件触发的元素的回调函数作为参数)
+                    ->  FocusEvent 
+                    ->  InputEvent
+                    ->  KeyboardEvent
+                    ->  MouseScrollEvent
+                    ->  MouseWheelEven
+                    ->  ProgressEvent       
+
 ```
+**Eventtarget**: 只有方法 ->  `addEventListener()` `removeEventListener` `dispatchEvent 给this分发一个事件(Event() 创建事件)`
+
+**Node** : 
+- `childNodes` `firstChild` `lastChild` `nextSibling`  `parentElement` `ParentNode`   `outerText` `previousSibling`
+- `nodeName` `nodeType` `nodeValue`(text: 本身，attr: 值)
+
+- `appendchild()` `cloneNode()` `insertBefore()`  `removeChild()` `replaceChild()`  `compareDocumentPosition()`
+- `contains() 是否后代` `hasChildNodes()` `` 
+
+**Element**  : document.documentElement, head , body
+element.nodeType = 1  ;  TagName, attr, opening tag , enclosed text content
+-  `attributes (属性集合)`  `children` `classList (className 的集合)`  `childElementCount` `accessKey`
+-  `clientHeight,Width, Top, Left`, `scrollTop,Width`
+
+**HTMLElement** ： 任何element 
+- `offsetTop,Width`
+
+**Event** ： 
+- `bubbles` `cancelable` `currentTarget (事件绑定的元素)` `target (事件触发的元素)` `eventPhase` `type`
+- `createEvent(type)`  `preventDefault() (阻止浏览器的默认行为)` `stopImmediatePropagation() (阻止冒泡，并阻止哦同类,addE..)` `stopPropagation (阻止冒泡)`
+
+**MouseEvent** : 事件回调函数的参数。
+- clientX, clientY : 当前与 可视body
+- pageX, pageY : 整个body 
+- screenX, screenY : 整个电脑屏幕
+- `movementX` `movementY` (mousemove : 当前鼠标位置以上一次鼠标位置的差) currentEvent.screenX - previousEvent.screenX
+![区别图](https://upload-images.jianshu.io/upload_images/18309556-28894242eac88b58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 |    | window | Eventtarget | Node | element | document | Attr | HTMLElement |
 | --- | ------ | ----------- | ---- | ------- | -------- | ---- | ----------- |
@@ -341,3 +377,31 @@ parent.addEventListener('click',function(e){
 ## 找需求
 
 elementUI 框架。
+
+
+## nextElementSibling 的模拟
+
+```javascript
+(function (arr) {
+            arr.forEach(function (item) {
+                Object.defineProperty(item, 'NextElementSibling', {
+                    configurable: true,
+                    enumerable: true,
+                    get: function () {
+                        var el = this;
+                        while (el = el.nextSibling) {  // 这个判断就很有技术了。 有装饰器的原理了。 
+                        // 第一次是  el.nextSibling  第二次是 : el.nextSibling.nextSibling 
+                            if (el.nodeType === 1) {
+                                return el;
+                            }
+                        }
+                        return null;
+                    },
+                    set: undefined
+                });
+            });
+        })([Element.prototype, CharacterData.prototype]);
+
+```
+
+框架中： 虚拟DOM 就叫 组件。
