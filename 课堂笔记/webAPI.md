@@ -69,7 +69,9 @@ element.nodeType = 1  ;  TagName, attr, opening tag , enclosed text content
 
 - `document.getElementById();// return element || null`
 - `document.getElementsByClassName(names)`
-- `var elements = document.getElementsByTagName(name);`
+- `var elements = document.getElementsByTagName(tag);`
+- `var elements = document.getElementsByName(name);`
+
 
 # element(标签内容)
 
@@ -227,7 +229,7 @@ var per = new Person();
 per.show(); // bind 绑定 this.
 ```
 
-#### 获取页内，引用样式 | 获取样式
+#### 获取页内，引用样式 | 获取样式 | 获取外联样式
 
 obj.currentStyle[attr]; // 低版本的 获取当前渲染的样式
 window.getComputeStyle(element[,pseudo])[attr];
@@ -270,19 +272,19 @@ console.log(a)
 
 ```
 
-- mouseover : 当前盒子，或当前盒子的子盒子 ，都会触发,(事件冒泡)
-- mouseout : 当前盒子，或当前盒子的子盒子 ，都会触发, (事件冒泡)
-- mouseenter : 当前盒子
-- mouseout : 当前盒子
-- mousemove : 好东西， 移动 。
-- mousedown : 按下时 1
-- mouseup : 松开时 2
-- click : 完成整个 点击过程。 3 点击事件最后触发。有 两三百毫秒的延迟。
+- `mouseover`: 当前盒子，或当前盒子的子盒子 ，都会触发,(事件冒泡)
+- `mouseout` : 当前盒子，或当前盒子的子盒子 ，都会触发, (事件冒泡)
+- `mouseenter` : 当前盒子
+- `mouseout`: 当前盒子
+- `mousemove` : 好东西， 移动 。
+- `mousedown` : 按下时 1
+- `mouseup` : 松开时 2
+- `click `: 完成整个 点击过程。 3 点击事件最后触发。有 两三百毫秒的延迟。
 
-- keydown, collback(e){ console.log(e.keyCode) }
-- keypress
-- keyup
-- e.keyCode 可以查看 键对应的 acsii 码表。
+- `keydown`, collback(e){ console.log(e.keyCode) } : 高电平
+- `keypress `: 按定时 可以一直显示。 
+- `keyup` : 
+- `e.keyCode` 可以查看 键对应的 acsii 码表。
 
 KeyboardEvent-》 keyCode
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent 键盘对象</a>
