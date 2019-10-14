@@ -441,6 +441,7 @@ console.log(box.lastChild);
 	insertBefore()  // createElement('img').insertBefore()
 	removeChild()
 	replaceChild()
+  createTextNode() // 创建文本节点。
 	
 	cloneNode()  //克隆 一层 节点
 	cloneNode(ture) // 深克隆

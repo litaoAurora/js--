@@ -24,7 +24,7 @@
 - `childNodes` `firstChild` `lastChild` `nextSibling`  `parentElement` `ParentNode`   `outerText` `previousSibling`
 - `nodeName` `nodeType` `nodeValue`(text: 本身，attr: 值)
 
-- `appendchild()` `cloneNode()` `insertBefore()`  `removeChild()` `replaceChild()`  `compareDocumentPosition()`
+- `appendchild()` `cloneNode()` `insertBefore()`  `removeChild()` `replaceChild()`   `compareDocumentPosition()` `createTextNode() ( 创建文本节点 )`
 - `contains() 是否后代` `hasChildNodes()` `` 
 
 **Element**  : document.documentElement, head , body
@@ -406,4 +406,5 @@ elementUI 框架。
 
 ```
 
-框架中： 虚拟DOM 就叫 组件。
+框架中： 虚拟DOM, 是js模拟的 html树，存在于内存中  就叫 组件。 createElement ， appendChild
+

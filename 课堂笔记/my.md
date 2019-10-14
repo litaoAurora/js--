@@ -362,8 +362,8 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 
 ```html
 <form>
-  <select name="city">
-    <option value="shanhai">上海</option>
+  <select name="city"> 
+    <option value="shanhai">上海</option> //  :selected 伪类选择器。
     <option value="guangzhou">广州</option>
   </select>
 </form>
@@ -413,6 +413,7 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 > enctype ： MIME编码，设置表单传输的编码。, 1. appliction/x-www-form-urlencoded 2. multipart/form-data 3. text/plain ； 
 
 `multiple` = multiple   : 可以多选文件上传, form 默认值能上传一个 、 **pc 端 ctrl 可以多选**
+`multiple` : multiple 是否可以多选
 
 `accept`="image/*,audio/mp3, video/mp4"  :”image/jpeg“  允许接受文件类型。jpg=> jpeg, 没有 jpg 类型
 
@@ -428,7 +429,8 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 
 `input-hidden`
 
-`disabled`  :  是否能用，禁用
+`disabled`  :  是否能用，禁用 `disable 和 nudefined`
+表单的属性 ：  `disable` `enable` `selected ( 已选中的框 ctrl + 左键可以多选 )` `checked ( 已选中的复选框 )` 
 
 `readonly` : 只读
 
@@ -503,6 +505,12 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 - #div2[class$="尾"]   class 里以尾结尾的
 - #div2[class~="class有de"]  class="de" id=div2
 - #div[class|="b"]  class="b-ddd"  class里含有b-  的标签
+- `::selection`  :鼠标选择文本是的样式。
+- `input:disable` : disable : true, false , disable, undefined.
+- `input:enable` : enable : true, false , disable, undefined.
+- `input:checked` : checked : checked , true, false , undefined.
+- `option:selected` : selected : 用于 option 里的 选择。
+- `:target` : #样式， 设置锚到的样式。
 
 ### 权重 1 - 1000
 - 权重, 可以叠加 , **各种选择器的 混用 权重会叠加。** 
@@ -1559,4 +1567,6 @@ console.log(a.jjj);
 ```
 >>>>>>>>> my2.md
 
+快捷键 ： 
+ctrl  + shift + d : 向下复制；
 
