@@ -335,6 +335,7 @@ KeyboardEvent-》 keyCode
 
 - `target` || `srcElement`
   - return Element(元素)
+  - 事件目标
 
 e.preventDefault && e.preventDefault();
 

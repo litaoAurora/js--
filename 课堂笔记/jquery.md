@@ -108,8 +108,11 @@ getAttribute() ,  setAttribute(),
 
 `value` `innerHTML` :
 - `val()` : value ： input 表单属性， 其他的也可用。
+  - 获取表单标签的 中的 value . 
 - `html()` : innerHTML
+  - -》 innerHTML , 获取内容
 - `text()` : innerText
+  - innerText  获取文本
 
 **表单事件**
 `onfocus` 获得焦点  `onblur` 失去焦点 `onchange` value值改变。
@@ -135,3 +138,62 @@ getAttribute() ,  setAttribute(),
 - `scrollTop()` 原生 : document.documentElement.scrollTop; body.scrollTop
 
 滚动事件一般给 windwo 加 window.onscroll = function (){}
+
+**绑定事件**
+addEventListener()  支持捕获，和 绑定
+    attachEvent()  不支持捕获
+    detachEvent()
+
+
+**jquery事件** 
+> 其实都是调用用一个方法 ： on , 只是我还没有找到
+- `mouseover()`  一般的绑定
+- `bind()`  jqeury 的事件绑定方式
+  - `unbind()`
+  - `bind('click mouseover' function (){})`
+  - 一次绑定多个
+  - `bind({  "click" : function(){}, "mouseover" : function(){}   })`
+  - 缺点 ： 无法实行动态绑定， 即 事件委托(利用冒泡原理)， 
+- `$(this).delegate(child, 'click',  function(e){})` // delegate 委托。 动态绑定
+  - function(){} 中， this =》 child . 
+  - `undelegate()` ： 解绑
+- `on()`  函数重载了
+  - `off( EventType, fn )` : 鼠标解绑, fn 没传则所有
+  - param1 : obj , string (此重载)
+  - param2 : srcElement , target.
+  - param3 : Function  e => e.delegate , e.currentTarget , e.data
+- `hover(fn,fn)` : fn1 : 鼠标移上去， fn2 鼠标移出
+- 自定义触发 `trigger()` 和 `triggerHandle() 不会触发默认行为。`
+
+```javascript
+// 没完
+ul.onclick = function(e){
+    var e = e || event;
+    var target = e.srcElement || e.target; // 兼容性。
+    // srcElement 是 target 的别名。 
+}
+e.delegateTarget
+```
+**隐式迭代**
+**手动遍历**
+- `each(index, item)` 
+- `$.each(arr, function(index, item){})`
+
+**释放$符**
+- `var alias = $.noConflict()` : 释放 $ 符， 用 alias 代替。
+
+
+插件 jquery
+jq22.com
+**jquery的插件**
+
+- `jqueru.fn.extend(obj)` : init, 实例方法。 
+- `jQuery.extend(obj)` :  静态方法， 扩展
+
+**jquery.color.js** : 颜色过渡插件
+**jquery.lazyload.js** : 图片懒加载的插件
+    : 图片懒加载的原理 -> 
+
+`/^\s+|\s+$/g` : 正则的 | 或应用，还未明白。
+
+前端的 快速标签语法。

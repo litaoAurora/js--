@@ -514,10 +514,20 @@ function removeEventListener(element, type, fn) {
 ### 事件对象的属性和方法
 
 - event.type 获取事件类型
-- clientX/clientY     所有浏览器都支持，窗口位置
+- clientX/clientY     所有浏览器都支持，可视窗口，当前鼠标位置。
 - pageX/pageY       IE8以前不支持，页面位置
 - event.target || event.srcElement 用于获取触发事件的元素
 - event.preventDefault() 取消默认行为
+- offsetX / offsetY 
+
+**盒子拖坠**
+```javascript
+// 1)   left =  pageX - offsetX
+// 2)   left = pageX - clientX + (this.offsetWidth)/2
+this.style.left = left;
+this.style.Top = right;
+```
+
 
 #### 案例
 

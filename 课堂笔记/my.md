@@ -1570,3 +1570,4 @@ console.log(a.jjj);
 快捷键 ： 
 ctrl  + shift + d : 向下复制；
 
+div:必须 ,  {} , :  [] ,
