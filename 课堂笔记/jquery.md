@@ -197,3 +197,112 @@ jq22.com
 `/^\s+|\s+$/g` : 正则的 | 或应用，还未明白。
 
 前端的 快速标签语法。
+
+# ajax  asynchronous javascript and xml 
+// 老师的 根目录 在 ： htdocs . 
+> xml  : 扩展标记语言。
+内置对象 =》 前后端数据交互。 
+
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/XMLHttpRequest"> async MDN </a>
+
+js : 不是真的异步， 只是在模拟。 
+
+- window : phpstudy   wamp  xamp 
+- mac :  mamp ; 
+
+mac : 子代 apache 
+`sudo apachectl start/stop` : mac 启动
+/Library/WebServer/Documents   默认根目录。 
+
+
+ftp : 20 , 21 ; "文件传输协议"
+http : 80;     ""
+https : 443;
+
+
+```js
+
+if(window.XMLHttpRequest){
+    var xhr = new XMLHttpRequest();
+}else{
+    var xhr = new ActiveXobject('Microsoft.XMLHTTP');
+}
+
+// 创建对象
+// EventTarget -> XMLHttpRequestEventTarget -> XMLHttpRequest
+// IE 6 不支持 这个对象 => ActiveXobject('Microsoft.XMLHTTP'); 兼容。 
+var xhr = new XMLHttpRequst();
+
+// get 携带数据 :  ulr+ data.
+// pust 携带数据 ： send (data);
+xhr.open('get', 'hello.txt'); // 定义表单(method, address, isayscn)
+    // address : api/get.php?username=张三&password=125 ;   通过地址携带数据。
+xhr.send(); // 发送 操作。 
+
+// 当阶段 发生变化是触发的事件 。 on  ready: 只读  state：声明 change  ：  
+xhr.onreadystatechange = function(){
+
+    if(xhr.readState == 4){
+        if(xhr.status == 200){
+            var data = xhr.responseText;
+        }
+    }
+}
+```
+
+- 对象  `var xhr = new XMLHttpRequest()`
+- 选择 打开方式，地址(url)，和是否异步   `xhr.open(method, address, isasync [,user][,password])`
+  - 设置 post 请求头 ： xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')  ; 设置**编码格式**
+- 发送动作 `xhr.send( data )` : data = 'username=xxx&pass=xxx' ;  以后端对应。
+- 添加监听事件 `xhr.onreadystatechange = function(){}`
+- 阶段  `xhr.readyState == 4 `
+- 状态  `xhr.status == 200`
+- 响应数据  `var data = xhr.responseText`
+
+url 有长度限制 : 故 get 提交的数据大小有限制
+pust : 把数据 放到 form-data 中。 
+    理论上可以无限， 但是服务端有限制。 ( 配置 post_max_size=10M )
+黑客 ( 技术 工具 sql注入 )
+
+`XMLHttpRequest()` 
+    `responseText` ( 文本 ) `responseXML` (  xml ) `responseURL` `responseType`
+    `readyState` 0(创建对象) 1(执行send()前) ( 1到2是阻塞 ) 2(数据回来了后) 3(解析数据) 4(解析完成) 
+                    阶段， 就是时间段而不是时间点。 
+    `onreadystatecheange` : 监听函数 . abort() 打断是就不会触发了
+    `timeout` : 设置超时值  timeout = 2000ms;
+        单超时时 会触发  `ontimeout = function(){}` 事件
+    `upload` => XMLHttpRequestUpload 对象。 这个对象是不透明的, 可以绑定如下事件
+        `onloadstart` `onprogress` `onbort` `onerror` `onload` `ontimeout` `onloadent`
+方法 ： 
+    `abort()` : 终止请求， readyState 状态 变为0， 且不会触发  onreadystatechange 事件
+    `getAllResponseHeaders()` 获取所有响应头
+    `getResponseHeader( name )` : 获取指定 name 的响应头
+    `open()`  : 初始化一个请求
+    `send()`
+    `setRequestHeader( header, value )` : 设置一个响应头, 一般 push 要指定编码 content-type, 
+        header : 
+IE 会有中文编码问题 
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI"> MDN </a>
+
+**get 的坑** post 则没有， post本身就有自己的编码， 也不会用url  来请求
+`encodeUTI()` 可以将中文编码 %EC
+`decodeUTI()` 可以解码
+
+IE 缓存问题 ： 当后端有文件改变是 , 前端会有缓存而不去重新请求。 
+缓存的原理是： URL 地址一样。 
+可以加个`时间戳`  或是每次加个随机数。
+
+**json 浏览器的内置对象**
+github 里面有 json 源码， 可以去看一下
+<a href="http://www.json.org/json-zh.html">json 源码 </a>
+`JSON()`  
+    `parse()` ： 解析
+    `stringify()` : 转字符串
+woe.json 
+    严格格式 : 末尾不能有 `,` ; 不能有注释； 要求 {} | [],.
+
+
+ajax 轮询
+innerHTML  的替换原理。
+
+1 6 7 8 12 13 
