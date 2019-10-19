@@ -38,6 +38,10 @@ git commit -m 'message'
 
 
 ```
+![Ke8nte.png](https://s2.ax1x.com/2019/10/18/Ke8nte.png)
+## 查看配置
+- `git config --list`  显示当前 git 的配置
+- `git config -e [,--global]`   : -e 是编辑， --global 是配置全局的 配置。
 
 ## 把大象放到冰箱要几步
 

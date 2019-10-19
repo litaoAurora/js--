@@ -547,7 +547,7 @@ this.style.Top = right;
 - onmousemove 鼠标移动触发
 - onkeyup 键盘按键按下触发
 - onkeydown 键盘按键抬起触发
-
+  - onkedown 获取的是上一个按下的键value 值。
 
 ## BOM
 
@@ -648,7 +648,7 @@ fragment:信息片断
 	字符串，锚点.
 ```
 
-#### location有哪些成员？
+#### location有哪些成员？专门管 url 的事。
 
 - 使用chrome的控制台查看
 

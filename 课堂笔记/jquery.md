@@ -89,7 +89,7 @@ for(var i=0;i<3;i++){
 - `appendTo()` `prependTo()`
 - `html()` : => innerHTML = $().html() + '<div>wde </div>';
 - `empty()` 清空子标签标签， 会把元素和事件都清空， 而 html 会把事件的绑定给遗留了， 内存泄漏
-- `remove()` : 移除this 中的元素。
+- `remove()` : 移除this 中的元素。自杀。 
 - `cloneNode( isEvent )` :     无法克隆事件， 原生还不知道。得看下源码
   - isEvent  ： true 克隆事件
 
@@ -176,7 +176,7 @@ e.delegateTarget
 ```
 **隐式迭代**
 **手动遍历**
-- `each(index, item)` 
+- `each(funcion(index, item){})` 
 - `$.each(arr, function(index, item){})`
 
 **释放$符**
@@ -285,9 +285,7 @@ IE 会有中文编码问题
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI"> MDN </a>
 
 **get 的坑** post 则没有， post本身就有自己的编码， 也不会用url  来请求
-`encodeUTI()` 可以将中文编码 %EC
-`decodeUTI()` 可以解码
-
+`encodeUTI()` 可以将中文编码 %EC `decodeUTI()` 可以解码 
 IE 缓存问题 ： 当后端有文件改变是 , 前端会有缓存而不去重新请求。 
 缓存的原理是： URL 地址一样。 
 可以加个`时间戳`  或是每次加个随机数。
@@ -302,7 +300,120 @@ woe.json
     严格格式 : 末尾不能有 `,` ; 不能有注释； 要求 {} | [],.
 
 
+- `ajax({url, data, dataType, })`  => defered 延迟对象。 可以 then . 
+  - 
+- `$.get(url, {data},  function(){}, [,dataType])` = 》 defered 。 
+  - 回调函数可以放在 then 里面。 
+  - then 里放回调函数
+- `$.post()` 
+
 ajax 轮询
 innerHTML  的替换原理。
 
-1 6 7 8 12 13 
+json : javascript Object notation 
+`http://json.org` : 兼容IE 67
+
+```
+input:text
+```
+
+ajax 的进一步封装
+```js
+
+function ajax( options ){
+
+    var defaults = {
+        methtod : options.method || 'get', // 给个默认值 'get'
+        data : options.data || ''  , 
+        url : options.url,
+        successd : options.successd || null,
+        error : options.error || null,
+    }
+}
+```
+
+## 瀑布流思想。 
+
+: 可视区域的高 + 垂直滚动过的距离 > 最短li的高 + 最短li 距离浏览器顶部的距离。 则 请求。
+: 
+
+### 三级联动, 省， 市， 区 查询。 
+areas_db 数据库。 
+核心 : 
+    select 标签的value 值是  被选中的option 的value. 
+    value 值改变时 触发 **change** 事件
+
+解除耦合性 ： 依赖没有改变。 优化代码 . 
+各个请求中存有依赖。 可以用 premise 模式来 设计。
+
+
+### 留言系统
+userSystem ： sql 
+css 
+
+`word-break: break-all;`  单词换行。
+
+`config.php`
+192.168.5.149 : 老师的IP
+192.168.5.47 
+
+焦点失去触发请求。onblur 
+小工具函数
+- 注册账户 (验证-后台),  事件用 onblur 焦点失去
+  - 1) 验证功能 。 red , green. 
+- 登录， post , a是 接口
+  - 2） 登录
+- 退出 
+  - 3) 
+  - 展示 注册页面。 
+- 留言 : 判断 是 什么标签发过来的。 才能判断是否是留言。 
+  - content 你的留言;
+  - send  : 
+
+清空 用 input : value ,  innerHTML . 
+
+cookies : 浏览器自动保存 cookies . 
+    登录后 ， 刷新 都是由 cookies 来判断。 
+    用 cookies 判断 用户是否登陆过， 选择 如何渲染页面首页
+        登录过 ： 注册框隐藏， 信息宽展示。 
+
+页面刷新 ： window.location.reload(); 
+
+**获取 cookie**
+属性 ： `document.cookie` : 可读可写。 
+
+后端可以跨域， 前端不可以跨域。 浏览器有限制。 
+
+前后端不分离 - 前后端的文件在同一服务器下。 
+
+前后端分离 ： 有两个 - 多 服务器。 
+后 ： MVC model view contorl 
+前 ： mvvc 
+
+同源策略： 
+跨域问题 ： 
+1 后端可以设计 允许或不允许跨域 ( 所有或某个IP )
+2 nginx 服务器**反向代理** ( nginx是个代理服务器 ) 
+    负载均衡， 缓存， 
+3 flasg插件( 可以放代码， 制作动画， 不安全。可以携带数据跨域 )，  网页制作。 dreamweaver , 
+4 后端脚本代理， 后端是可以跨域的 。 
+5 jsonp  , 需要后端配合返回指定数据 ( json with padding  ), json 填充
+    利用 script 标签来引入别的网站 的数据， 可以跨域请求数据。
+    <script src="..data..">
+    <script src="aa.txt">  ```txt  alert('123')```
+    后缀扩展名 ： 只是引导 计算机的文本的打开方式。 
+    指针问题 ： 桌面的文件只是 指针的删除。 内容还是在的。 
+    文件系统， 轨道，自导 ， 打格子。 格子， 磁道 。。。。
+
+6 前端的小技巧 ： 
+    postMessage ( window.open(url).postMessage("data", url)  )
+    
+                ,  iframe , window.domain( 主域名一样， 子域名不一样。  ) 
+
+```js
+postMessage ... 利用页面 跳转传输数据
+```
+百度的接口 ： 
+    sp0.baidu.com/
+
+去重 ： 双重循环。
