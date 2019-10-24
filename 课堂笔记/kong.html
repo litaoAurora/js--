@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,19 @@
             margin: 0 auto;
             background: red;
         }
+
+        select {
+            width: 100px;
+            height: 100px;
+        }
+
+
+
+        select option:selected {
+            color: red;
+            background: red;
+            font-size: 18px;
+        }
     </style>
 </head>
 
@@ -26,9 +39,14 @@
     <span>fdjsfkdsfdsf</span>
     <span>fdjsfkdsfdsf</span>
 
-    <select name="" id="">
-        <option value="">ff</option>
+    <select name="" id="" heigth="100">
+        <option value="ff">a</option>
+        <option value="pp">ff</option>
+        <option value="pp">pp</option>
+        <option value="ff">b</option>
     </select>
+
+    <button>点</button>
 
     <script src=""></script>
 
@@ -37,9 +55,32 @@
         cl = div.className;
         cl += ' wode'
         console.log(cl)
+        var se = document.querySelector('select');
+        var op = document.getElementsByTagName('option')
+        // console.log(se.value = 'pp');
+        console.log(se.value);
+        console.log(op[0].selected, op.value)
+        console.log(op[1].selected, op.value)
+        document.getElementsByTagName('button')[0].onclick = function () {
+            console.log(document.querySelectorAll("select>option:selected"))
 
-        var op = document.getElementsByTagName('option')[0]
-        console.log(op.selected)
+        }
+
+    </script>
+
+    <script>
+
+        var a = {
+            b: this,
+            setb: function () {
+                console.log(this.b)
+                console.log(this)
+                return this.b;
+            }
+        };
+        console.log(a)
+        console.log(a.setb())
+
     </script>
 </body>
 

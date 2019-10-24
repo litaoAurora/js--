@@ -39,7 +39,7 @@
 4. <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-attachment">`background-attachment`</a> 依附, 图片随着当前屏幕的变化而如何变化
    1. `scroll(元素)` `fixed(视口)` `local(元素内容)`
 5. <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size">`background-size`</a> 尺寸，比例，包含， 剪切
-   1. width, height, contain(原比例) , cover(拉伸)， %
+   1. width, height ( 是把整张图片缩成，扩大到 width,height ), contain(原比例) , cover(拉伸)， %
 6. <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-clip">`background-clip`</a> (box,border)
    1. `border-box` `padding-box` `content-box` `content-box` `text`
    2. **盲区**: 以什么对象为标准剪切 **text**
@@ -74,11 +74,11 @@
 - 当 百分比是 `%` 继承(相对于)父盒子的宽度。来说的。
   - 一般应用于 parent 元素下的 img 元素。
 
-## text (module 文本样式)
+## text (module 文本样式  text Decoration)
 
 1. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/hanging-punctuation">`hanging-punctuation` 标点符号挂起</a>`first` `last` `force-end` `allow-end`
 2. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens">`hyphens` 断字规则</a> `none` `manual(手控)` `auto`
-3. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing">`letter-spacing` 字母间距 </a> `normal` `px` `em` <span style="color:green">( letter 字母，信)<.span>
+3. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing">`letter-spacing` 字母与字母之间的间距 </a> `normal` `px` `em` <span style="color:green">( letter 字母，信)<.span>
 4. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap">`overflow-wrap` 单词断行</a> `normal` `anywhere` `break-word`
 5. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align"> `text-align` 文本水平对齐 </a>
    1. `left right center(左， 右 中)` `justify(两端)` `string` `start end match-parent`
@@ -92,6 +92,7 @@
 10. <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/word-break">`word-break`</a>单词内断行
     1. `normal` `break-all` `keep-all` `break-word`
 11. `word-spacing` 单词空白符,单词间距
+12. <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-shadow">`text-shadow` : x y 模糊 color;  文本阴影</a>
 
 <div style="color:green;font-size:18px;">`text-align:center` `text-indent:length`  `white-space:nowrap`(强制一行) `text-transform:capitalize `(单词首字母大写)</div>
 <div style='color:red;'>letter-spacing 字与字的间距，word-spacing 空白符的长度</div>
@@ -119,6 +120,12 @@
 
 1. cursor: `help` wait crosshair (十字) `default`
 
+### appearance ( 控件外观  )
+> 需要兼容。 。。。。 没个 属性都 是不同的 默认外观。 none, 可以去掉。
+
+1. appearance : 
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/appearance"> base user interface </a>
+
 ### outline ( 轮廓 ) 与边框相序
 
 > 轮廓与边框的区别： 轮廓不会占 `空间`, 且<span style="color:green">不一定是`矩形`</span>
@@ -128,6 +135,7 @@
 3. `outline-offset` : length,px <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset"> 轮廓偏移 MDN</a>
 
 ### resize (设置 元素的可调整大小) 一般用于输入框
+> 用于响应端的输入框 不能 改变 textarea, text
 
 1. `resize` : `none (不能调整)` `both` `horizontal 水平` `vertical 垂直`
 
@@ -263,3 +271,7 @@
 - 人民币 `&yen;`
 - `divide` `&sup2;` `&sup3;`
 - `&emsp;` 与 字体大小的有关
+
+
+## 控件外观。
+`appearace:` ``

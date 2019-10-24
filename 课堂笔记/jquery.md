@@ -9,8 +9,8 @@ min -> 压缩版。  webpark  。
 
 在head 标签里 
     jQuery 要比 原生的 onload  要快。 并不用 用 window.onload 事件(HTML 和 CSS 样式都加载完才触发。) ：
-        window.onload  与 addEventListener('DOMContentloaded')  绑定方式不同。 覆盖与 多个。 
-    jquery 是  `DOMContentloaded`( 仅就 HTML 加载完旧触发事件 ) 事件 : 触发时机更早 。 只需内容加载完毕就行了。
+        window.onload  与 addEventListener('DOMContentLoaded')  绑定方式不同。 覆盖与 多个。 
+    jquery 是  `DOMContentLoaded`( 仅就 HTML 加载完旧触发事件 ) 事件 : 触发时机更早 。 只需内容加载完毕就行了。
     入口函数  $(function(){}) :  - 
              $(document).ready(function(){});  二
 ```javascript
