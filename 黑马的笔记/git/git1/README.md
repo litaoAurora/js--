@@ -3,6 +3,7 @@
 ## 什么是 Git?
 
 - Git 是一款源代码管理工具(版本控制工具)
+  - 分布式的版本控制工具
   - 我们写的代码需要使用 Git 进行管理。
 - 源代码有必要管理起吗？
 - 1.0
@@ -44,10 +45,6 @@ git commit -m 'message'
 - `git config -e [,--global]`   : -e 是编辑， --global 是配置全局的 配置。
 
 ## 把大象放到冰箱要几步
-
-1. 打开冰箱门
-2. 放大象
-3. 关上冰箱
 
 1) 选择要存储的文件 add
 2) 提交 commit -m
@@ -205,3 +202,66 @@ git commit -m 'message'
   - --patch 补丁
 - -d
   - --delete
+
+git remote add origin http: …  **链接远程**
+git push -u ..      **上传**
+
+
+
+# 新的
+
+> 流程是 ： 每次提交的代码都要是  pull 一次 github 的最新代码来 保存，合并。 
+>
+> 接下来才是 提交。  先 pull 在 push .
+
+
+
+- 公司的是 gitlab
+
+官网 : `https://git-scm.com/download/linux`
+
+`[https://www.git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git](https://www.git-scm.com/book/zh/v2/起步-安装-Git)`
+
+## 安装
+
+```txt
+
+sudo yum install git  // yum  liunx安装
+sudo apt-get install git   // apt-get
+s
+
+```
+
+
+
+## 配置  `config` 
+
+> 控制git  外观和行为的配置变量。 
+
+1 三个配置管理包 : 
+
+  `/etc/gitconfig`     **—system**
+
+ `~/.gitconfig`     **用户    —global**
+
+
+
+用户信息 ： (不可更改)
+
+```txt
+
+git config --global user.name "John Dne" // 配置名字
+git config --global user.email "johd.com"  // 
+
+git confing --list   // 检查配置信息
+
+```
+
+>  `--global` 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息
+
+### 检查配置信息
+
+`git confing --list`   // 检查配置信息
+
+
+

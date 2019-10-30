@@ -131,7 +131,24 @@ ie8, ie9 :  还要引入=> Respond.js ( 不能本地打开, 只能 http 来 ).
 
 
 
+## 排版
 
+```txt
+
+// 标题  h1~ h6 ,  副标题 small
+<span class="h1 ~ h6">  // 副标题  small 
+
+// 文本
+.text-left
+.text-left    |  .text-right  | .text-center
+.text-UP
+
+
+```
+
+
+
+有插件  vscode   `bootstrcap`
 
 
 
@@ -296,7 +313,9 @@ hbuider :  前端开发IDE。 `Dcloud 公司` ： 在线云打包。 同个 hbui
 
 
 
-`rem` `vw`  `vh`  : 适配。 
+`rem` `vw`  `vh`  : 适配。 相对于是 **可视窗口大小的** 的适配。
+
+​		 `1vw` 相对于 1% 可视窗的大小 `宽`;  `vh`  高。 
 
 `cssrem`  : 
 
@@ -365,7 +384,80 @@ body .cla {
   .pre(width,)
 }
 
+```
 
+
+
+
+
+在 移动端css 中 ，有时 人为的事件会没有那么准确， 有时要 筛选出符合特定的事件， 就要
+
+阻止某些事件。  `touch-action: none;`
+
+`Pointer_events`  应用程序
+
+`Pointercancel` 指针取消事件。 
+
+> 通过明确指定 浏览器应该处理那些手势。 
+
+```css
+
+// 在垂直水平 滑动时  阻止 垂直滚动。 
+* {
+  touch-action: none;
+}
 
 ```
 
+
+
+animate.css   插件。 
+
+小动画插件。
+
+
+
+移动端有个 **点透问题**
+
+> 事件会渗透。 
+>
+> 不是冒泡， 
+>
+> 两个盒子是 并列的关系，。 绑定事件 。 单击  `touchstart`  与 `click` click 事件会有延迟。 
+
+```js
+<div id="b">1 bottom</div>
+<div id="t">2 top</div>
+
+var bottom = document.querySelector('#b'), top = document.querySelector("#t");
+bottom.addEventListener('click', function (){console.log('触发 click')});
+top.addEventListener('touchstart', function (){ 
+	top.style.display = 'none';
+  console.log('chufa le touchstart')
+  console.''')
+})
+
+// 当点 2 是  1 的 click 是会有延时的。比 touchstart 要满 300ms。 两者都会触发。 
+// 解决： 1 用其他事件。    2 用 zepto.js 中的 `top` 函数可以解决。
+// 3 fastclick 。 在网络中找一个 fastclick 。 把 click 的速度变快。 
+	 // 原理是 : 阻止原先的 click ， 用 自己定义块的  click 事件响应。 时候恢复
+
+```
+
+
+
+`npm i` 保存在本地。 
+
+
+
+**iscroll 插件**
+
+> 滚动插件。 
+
+`ajax` 加载时 动画。 转圈圈动画。
+
+
+
+
+
+京东首页，   js ,   iscroll  ,   tap.s 封装。   animate.css 用一下。  点透问题。 

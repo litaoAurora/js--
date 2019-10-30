@@ -417,3 +417,98 @@ postMessage ... 利用页面 跳转传输数据
     sp0.baidu.com/
 
 去重 ： 双重循环。
+
+
+
+zepto.js  ==> 类似于 jquery 库。 插件
+
+> zepto.js 是移动端的 js 库。 体积更小， 适合现在高级浏览器。 是一个 模块化的额
+>
+> 定制的 js 库。 如何定制 -》 
+
+
+
+`zepto` `event` `ajax` `ie`  `form`  : 默认的模块是 这些。  可以定制一些其他的模块。
+
+​	在 `src` 目录中可以引入  其他的 模块。
+
+
+
+- r
+
+- 入口函数  `$(function (){})`
+- `click`    单击按钮事件。 
+- 引入 `fx.js`  `animate`  
+- `fx_method.js`    `fadeout` 划入滑出  `hide`  ``
+- `on` 事件绑定。 
+- `touch 模块`  移动端 的 事件。 
+
+
+
+> 定制 ： 在 github 中 定制。  有 个 make 文件。
+
+```txt
+
+npm install  // 安装依赖
+vim make // 
+// 找到  
+modules = (env['MODULED'] || 'zepto event ajax form fx fx_methods touch selector' ).split()  
+// 在 这里 定制模块。 
+// 后缀不用加。 
+
+npm run dist  // 生成 dist 目录。 
+
+```
+
+
+
+mac 的 `spotlight ` 搜索。
+
+`commomed + 空格` 
+
+终端 ： `terminal`
+
+
+
+### npm 的基本命令
+
+1)  初始化项目 
+`npm init`
+
+2)   添加依赖
+
+`npm install`
+
+`npm install (i) [package]@[version] (-S/-D) (-g)`
+
+​		`-S` **--save**   `-D`  **—save-dev**   `-g`  **--global**
+
+3) 删除依赖
+
+`npm uninstall (-g) [package]`
+
+4) 更新依赖
+
+`npm update (-g) [package]`
+
+5) 运行脚本
+
+`npm run [scriptname]` 
+
+
+
+**webpack**   **npm**
+
+
+
+
+
+
+
+
+
+
+
+
+
+t

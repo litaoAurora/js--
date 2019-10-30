@@ -21,67 +21,75 @@
         }
 
 
-
         select option:selected {
             color: red;
             background: red;
             font-size: 18px;
         }
     </style>
+
+    <script>
+        
+
+
+        window.addEventListener('DOMContentLoaded', function () {
+            function mybgc() {
+                var bgc = {
+                    // "red": ['*'],
+                    "maroon": ['header', 'div', 'footer'],
+                    "blue": ['article', 'section', 'nav', 'aside'],
+                    "aqua": ['img'],
+                    "background": ['input'],
+                    "teal": ['span', 'i'],
+                }
+                for (var col in bgc) {
+                    if (bgc.hasOwnProperty(col)) {
+                        // console.log(col)
+                        var newli = [];
+                        for (var i = 0; i < bgc[col].length; i++) {
+                            // console.log(bgc[col][i], bgc[col][i])
+                            var tag = document.querySelectorAll(bgc[col][i]);
+                            // console.log(tag, bgc[col][i])
+                            if (tag.length > 1) {
+                                Array.from(tag).forEach(function (item, i) {
+                                    item.style += `outline:1px solid ${col};`;
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
+        })
+
+
+    </script>
+
 </head>
 
 <body>
+    <div id="dod">wode</div>
+    <div>
+        wodf ds ds f 
+    </div>
+    <div>
+        peizhf d 
+            <a href=""></a>
+            <img src="" alt="">
+    </div>
 
-    <div id='div1' class='cl'>Here <a herf=""></a>is div -01</div>
-    <span>fdjsfkdsfdsf</span>
-    <span>fdjsfkdsfdsf</span>
-    <span>fdjsfkdsfdsf</span>
-    <span>fdjsfkdsfdsf</span>
-    <span>fdjsfkdsfdsf</span>
-
-    <select name="" id="" heigth="100">
-        <option value="ff">a</option>
-        <option value="pp">ff</option>
-        <option value="pp">pp</option>
-        <option value="ff">b</option>
-    </select>
-
-    <button>点</button>
-
-    <script src=""></script>
-
-    <script>
-        var div = document.getElementById('div1');
-        cl = div.className;
-        cl += ' wode'
-        console.log(cl)
-        var se = document.querySelector('select');
-        var op = document.getElementsByTagName('option')
-        // console.log(se.value = 'pp');
-        console.log(se.value);
-        console.log(op[0].selected, op.value)
-        console.log(op[1].selected, op.value)
-        document.getElementsByTagName('button')[0].onclick = function () {
-            console.log(document.querySelectorAll("select>option:selected"))
-
-        }
-
-    </script>
-
-    <script>
-
-        var a = {
-            b: this,
-            setb: function () {
-                console.log(this.b)
-                console.log(this)
-                return this.b;
-            }
-        };
-        console.log(a)
-        console.log(a.setb())
-
-    </script>
 </body>
+<script>
+    document.querySelector(".conold")
+
+    var a = document.querySelector("#dod");
+    console.log(a)
+    // a.style.outline = '1px solid red;'
+    a.style = 'outline:2px solid red;';
+    // a.style += 'border: 1px solid green;';
+</script>
 
 </html>

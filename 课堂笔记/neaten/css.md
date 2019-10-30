@@ -1,3 +1,5 @@
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element"> HTML element html 标签地址</a>
+
 ## 路径
 
 - 相对路径
@@ -122,6 +124,7 @@
 
 ### appearance ( 控件外观  )
 > 需要兼容。 。。。。 没个 属性都 是不同的 默认外观。 none, 可以去掉。
+> 表单控件的外观。 
 
 1. appearance : 
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/appearance"> base user interface </a>
@@ -129,12 +132,14 @@
 ### outline ( 轮廓 ) 与边框相序
 
 > 轮廓与边框的区别： 轮廓不会占 `空间`, 且<span style="color:green">不一定是`矩形`</span>
+> `outline-color: red`  `outline-width`  `outline-style: solide;`  `outline-offset: 10px;` ( 偏移量。 )
 
 1. `outline`: `color style width` 颜色， 框的样式 ， 宽度
 2. `outline-color` : `color(red , rgba, hsla, currentcolor(与文本色一样))` `invert (颜色反转)` <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color">MDN address </a>
 3. `outline-offset` : length,px <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset"> 轮廓偏移 MDN</a>
 
 ### resize (设置 元素的可调整大小) 一般用于输入框
+> 控制 一个元素的大小是否可调。
 > 用于响应端的输入框 不能 改变 textarea, text
 
 1. `resize` : `none (不能调整)` `both` `horizontal 水平` `vertical 垂直`
