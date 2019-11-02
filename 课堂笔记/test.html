@@ -6,62 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .bg {
-            width: 50px;
-            height: 50px;
-            margin: 100px auto 0;
-            background: url('../../')
-        }
-    </style>
+    
 </head>
 
 <body>
-
-    <div class="bg">
-
-    </div>
-
-
-
-    <div xmlns="http://www.w3.org/1999/Math/MathMl"></div>
-    <div id='test1' class='cla'>
-        <div class='ff'></div>
-        <div class='ff'></div>
-        <div class='ff'></div>
-        <p></p>
-
-    </div>
-
-    <div id='top'>
-        <div id='left'></div>
-
-    </div>
-    <div data-cid="wode" id="i" da='p'></div>
-    <script>
-        // 第三个参数 设置为true 的先运行。 
-        var data = document.getElementById('i');
-        console.log(data.attributes.da = 'tade')
-        console.log(data.attributes)
-
-        let t = document.getElementById("top");
-        let idAttr = t.getAttributeNode("id");
-        console.log(idAttr.value == "top", idAttr)
-        let d = document.getElementById('test1');
-
-        console.log(d.attributes)
-        console.log(d.childNodes)
-        console.log(d.childNodes[0].nodeType, d.childNodes[0])
-        console.log(d.localName)
-
-        var a = document.getElementById('top');
-        a.onclick = function () {
-            console.log('a')
-        }
-
-        console.log(a.onclick)
-        console.log(a.cloneNode());
-    </script>
+    <div>wdi</div>
 </body>
-
+<script>
+    console.dir( document )
+</script>
 </html>

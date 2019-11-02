@@ -64,6 +64,7 @@
 
 ## margin ( 外边框 )
 
+: margin 是受两个标签的共同作用的。 `共同影响` 决定自身的是 left 和 top;   right 和 bottom 影响别人。
 1. 取值 : top bottom rigth left;px
    **外边距合并(margin collapsing 折叠)** - (前)bottom 和 (后)top 会取其大者。
    **外边距塌陷(top)**
