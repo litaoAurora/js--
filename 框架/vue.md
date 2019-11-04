@@ -6,7 +6,7 @@ vue
     主体框架
         插值表达式 :  -> {{ 表达式 }}    {{ 1+1 }}
                 只能是 Math 这样的 内置对象 可以写在里面， window 的并不能写进。 
-
+    
         指令  :   ->   :class :value  v-if  v-for  v-on ， @click绑定事件
         computed (计算属性)
         Watch
@@ -14,11 +14,11 @@ vue
         自定义指令
         响应式原理
         虚拟阶段原理
-
+    
         组件
         组件通信
         声明周期
-
+    
     插件 。。。 
         状态
         路由 。 
@@ -113,7 +113,7 @@ arr    in :  arr属性 是否在 原型链上
 
     getOwnPropertyNames()  某对象是否存在于 某一个对象的的原型链上 。  
     __proto__ : 用来获取一个对象的上一级的原型对象
-
+    
     v-for  选项卡
     http://192.168.4.171/svn/codeAndvideo
 
@@ -178,14 +178,18 @@ watch 自定义的数据监听器。   可以写成 对象和 函数
 : 在数据变化是 希望做一些格外的数就用 watch 选项。 
 
 ### watch 和 computed
+
+: 习惯  ->   最好 属性在书写时都写成 字符串。
+
 > handler 是在 watch 里面的。
 computed:     如果一个数据依赖别的数据计算得出 都可以用 computed 
 ```js
+// watch 可以监听 data 和 computed 里面的属性。
 watch : {
     proper : function (){} // 直接函数 简写
-    proper : { // 对象 里面加事件句柄 handler  
+    "proper" : { // 对象 里面加事件句柄 handler  
         deep: true,  // 深度监听
-        immediate : true , // 会立即执行一次， 
+        immediate : true , // 会立即执行一次，触发一次 数据改变。 
         handler : (newVal, oldVal){  // 会把 新改变的值和 旧的值传进来。
         }
     }
@@ -205,6 +209,8 @@ computed : {
     }
 }
 ```
+**computed** 里面的数据的值由  `getter`  return 出来的。 与 异步函数， 所以不能体现到异步函数中。
+
 computed 与 watch : 有异步操作时... 需要用 watch .
 setTimeout... 
 
@@ -216,6 +222,168 @@ obj 里面的 属性也称为 标识符，  标识符不能添加 `.`   "fdfd.fd
 虚拟节点 ：  通过 js 的 Object对象模拟DOM中的节点。 然后再通个特定的render方法将其渲染成真的DOM节点
 为什么 要使用虚拟节点： 
     频繁操作 DOM 
+
+选项： 类如 可供选择的选项， 并不是必须。 
+
+
+
+# 实例方法 vm.methods
+
+
+
+##   vm.$set  手动添加依赖
+
+> 手动把 data里的数据给 watcher  添加依赖。 , 额外添加 一些。
+
+```js
+
+let vm = new Vue({
+  el: "#app",
+  data : {
+    obj : {}
+  },
+  created : function(){  // 声明周期的第二个函数,  此时 wacther 要监听的值已经遍历完了， 
+    this.$set( this.obj, 'name', 5555 ) // 手动给watcher 添加依赖
+  }
+})
+
+// 全局 - 静态方法
+Vue.set(vm.obj, 'name', 555)
+
+
+```
+
+## vm.$emit
+
+> emit : 提交
+
+
+
+
+
+# 全局api, 也叫静态方法
+
+
+
+## 过滤器  Vue.filter(id, [defined])
+
+> 在这里的 过滤器是一个 **自定义一种规则**， 去覆盖原数据的显示， 原数据本身没有改变
+
+- 参数
+  - `{string} id`
+  - `{ Function }  defined`
+
+```html
+
+<div id="app">
+	{{ mgs | capitalize }}  <!-- |   管道符, mgs 会把自身作为参数传进来给 capitalize -->
+  <!-- capitalize 是 靠 Vue.filter return 的数值。 -->
+</div>
+
+<script>
+  //   /\B(?=(\d){3})\b/  \b 是个单词界限。 就是 word 与空格之间。
+	Vue.filter('capitalize', function(){ // 全局的
+    if(!value) return ''
+    value = value.toString()
+    return value.toUppercase();
+  })
+  
+  let vm = new Vue({
+    el: "#app",
+    data : {
+       mgs : 'xiao'
+    },
+    filters : {
+      "capitalize" : function (val){
+        	// val 就是  mgs,   靠 return 来拿值
+        		 return val.toUpperCase();
+      }
+    }
+  })
+</script>
+
+```
+
+
+
+
+
+## 组件  Vue.component
+
+> 组件是： 可复用的 vue 实例。 且与 `new Vue` 接受相同的 选项。 
+
+> 为什么要用组件 ：   组件  为了模板高效的复用代码。 提高维护效率。
+
+> **每个组件都是一个 Vue 实例。** 都可以定义自己的 data , methods 
+
+>  `new Vue()`   本身也是一个 组件。 而且是一个父组件， 其他全局的或是 在 实例中的私有模板都要挂载则父组件之下。  `new Vue`  也就是所谓的  **`根组件`** 
+
+> **每个组件必须要有且只有一个根标签**， 否则报错。 
+
+### 选项
+
+-   **`data`**  :   在此 必须是以个函数， 保证每个实例的数据都是唯一的。 
+-   **`template`**   :   定义模板，  如何用组件？？ 就是写在 template 属性这里。
+-   **`props`**  :   通过 props  在实例中接受数据， 用于实例之间的数据通信， 共享。
+
+
+
+**那可数据是哪个组建的？** ： **写在谁的模板里就是谁的响应数据**， 父组件有模板， 子组件也有模板。 
+
+```html
+
+<div id="app">  // app 是父组件( 根组件 )， 里面的 <test> 是子组件。 
+  	
+  	父组件向子组件传递参数。 就是在这里宏观新加的， 是为数据源， 然后向 Vue.component 传递数据。    
+  	<!-- title="property"  数据源。    {{ title }}:  使用数据   -->
+     <test title="property"> {{title}} </test>
+  	 <!-- ################## -->
+     <test title="" :title=""  v-on:helloWork="log"> </test>   
+  <!-- title 对象props ['title'], :title="" 对应 new Vue 里 data { title: '' } -->
+     <h1 is="test"></h1>
+  		<!-- 常量: is, 变量:  :is ;  用于便于阅读可以加个 <h1 is="test"> 来替换 <test>-->
+</div>
+
+<script>
+  // title 是与 Vue.component 对应的。
+ Vue.component('test', {
+        //   data 在此 是  function , 保证返回的是唯一的 引用类型。
+        data : function (){
+            return {
+                count : 0
+            }
+        },
+        template : `<h1 >你是我的眼 肉嘟嘟的小脚丫 {{ title }} 
+												<button v-on:click="$emit('helloWork')"></button> 
+										<h1>`, // 这是 子组件
+   			// button 不能和 h1 同级， 应为 h1 已经是 根组件了。v-for 是不能写在 根元素上面。
+        // 向子组件传递 数据。 , 在实例中接受数据， 用于与其他实例共享数据。 
+   			// v-on:click="$emit('helloWork')"  是预先给定的 可供 父组件绑定事件的 定义。
+   			//  v-on:clice="""
+        props : ['title']
+    })
+  
+  // :title 是与 new Vue对应的
+    new Vue({
+        el : '#app',
+      	methods : {
+          log: function(){
+            console.log('hello work')
+          }
+        },
+      components : {      // 实例的 自定义组件。
+        	'componentName' : {
+            	template :  `<ul></ul>`
+          }
+      }
+    })
+</script>
+
+```
+
+
+
+​			`data-* `
 
 
 

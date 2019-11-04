@@ -22,19 +22,49 @@
 
 <body>
     <div id="app">
-        <p> {{arr}} </p>
+     <!-- title="property"  是数据源 ,-->
+     <test title="log"> {{ my }} </test>
+     <test title="wode" :title="my"  v-on:helloWork="log" > </test>
+     <!-- 在这里只能 调用 test 而不能再添加 -->
+     <test></test>
     </div>
+    <!-- <test> {{count}} </test> -->
+
 </body>
 <script src="vue.js"></script>
 <script>
 
-    let vm = new Vue({
-      el : '#app',
-      data : {
-          obj : {},
-          arr : [ 1, {name : 'tao'} ]
-      },
+    //  组件 是复用的 vue 实例。 模板。 
+    // 定义一个名字， 和 `new Vue` 一样的选项
 
+    // 全局的 但是也必须要用到 有实例监听 的 范围内。
+    //  应该是添加到了  Vue.prototype 里面了。 
+    Vue.component('test', {
+        //   data 在此 是  function , 保证返回的是唯一的 引用类型。
+        data : function (){
+            return {
+                count : 0,
+                "my" : 'my',
+               
+            }
+        },
+        template : `<h1 >你是我的眼  {{ title }} <button v-on:click="$emit('helloWork')"> 提交 </button> </h1>`,
+        // 向子组件传递 数据。 , 在实例中接受数据， 用于与其他实例共享数据。 
+        props : ['title']
+        // title 可以换成 其他的自定义的属性也可以。
+    })
+    // 实例本身 也是一个 组件
+    new Vue({
+        el : '#app',
+        data : {
+            my : 'nide',
+            log : 'logloglog'
+        },
+        methods : {
+            // log :function(){
+            //     console.log('hello work---------')
+            // }
+        }
     })
 
 </script>

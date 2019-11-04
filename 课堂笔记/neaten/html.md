@@ -72,7 +72,7 @@
 ### tabindex   tab键次序
 ### translate  
 
-# 根元素 <html>
+# 根元素 `<html>`
 > : 所有元素的祖先。 只跟 head  和 body
 - 属性 : 
     - xmlns : XML 的命名空间。 
@@ -84,7 +84,28 @@
 > 元数据 ： metadata -> 包含页面相关信息， 包括样式，脚本，及数据。 -》 SEO 利于优化， 
 > 更好地渲染页面 ： pc 和 移动端的 规定差别在于 元数据的差异。 
 
-## `<base>`  
+## `<meta>`
+
+> 接口都是给 js 用的。 
+
+**接口：   `HTMLMetaElement`**  ;    EventTarget ->  Node  ->   Element  ->  HTMLElement  -> HTMLMetaElement
+
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv"> Meta MDN  说明文档</a>
+
+<a href="https://www.notion.so/meta-8cd558ba52d843058292b5beb485ee1f"> 别人的说明总结 </a>
+
+| perproty         | content        | description                        |
+| ---------------- | -------------- | ---------------------------------- |
+| **`charset`**    |                |                                    |
+| **`content`**    |                |                                    |
+| **`name`**       | `viewport` ... |                                    |
+| **`http-equiv`** |                | 能改变服务器和用户引擎行为的编译。 |
+
+
+
+
+
+
 
 
 
