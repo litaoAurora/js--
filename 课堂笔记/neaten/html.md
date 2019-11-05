@@ -80,13 +80,13 @@
 : 命名空间 namespace  名称空间。 ( 分类 )
 : 为什么要有命名空间： 为 解决命名冲突，变量 重用 而生。 相当于 **`相同的变量名寄生在不同的对象之下。`**
 
-# 文档元数据
+## 文档元数据
 > 元数据 ： metadata -> 包含页面相关信息， 包括样式，脚本，及数据。 -》 SEO 利于优化， 
 > 更好地渲染页面 ： pc 和 移动端的 规定差别在于 元数据的差异。 
 
-## `<meta>`
+### `<meta>`
 
-> 接口都是给 js 用的。 
+> 接口都是给 js 用的。 ,,  meta 其实是个很复杂的标签。 
 
 **接口：   `HTMLMetaElement`**  ;    EventTarget ->  Node  ->   Element  ->  HTMLElement  -> HTMLMetaElement
 
@@ -103,9 +103,38 @@
 
 
 
+###  `<link>`  : 外部资源链接元素
+
+> 规定了当前文档与外部资源的关系;    属性也有好多， 
+
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link">link:MDN</a>       其中 rel ->  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Link_types" style="color:blue;" >relationship 关系的值</a>
+
+**常用** : 可以引入图标， 可以媒体查询。 
+
+```html
+<link rel="icon" href="favicon.ico">
+<link href="print.css" rel="stylesheet" media="print">
+<link href="mobile.css" rel="stylesheet" media="screen and (max-width: 600px)">
+<link href="fancy.css" rel="alternate stylesheet" title="Fancy">  可供替代的样式
+```
+
+**目前已知用途:   引入样式， 引入图标， 媒体查询来引入不同的 样式**
+
+### `<title>` 标题
 
 
 
+## 分区根元素
+
+###  `<body>`
+
+> js : `document.body` 可以快捷访问
+
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/body"> body descriptor</a>
+
+> 其中可以有少的事件是可以给body绑定的。 
+
+**`onbeforeunload`  `onblur`  `onerror` `onfocus` `onhashchange`**
 
 
 
