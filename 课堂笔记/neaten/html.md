@@ -1,5 +1,6 @@
 
 有个属语表： <a href=" https://developer.mozilla.org/zh-CN/docs/Glossary "> https://developer.mozilla.org/zh-CN/docs/Glossary </a>
+# HTML  : 层叠样式表
 
 ## 标签结构 elements
 > 开始标签 属性 结束标签  内容  --> 元素
@@ -134,8 +135,89 @@
 
 > 其中可以有少的事件是可以给body绑定的。 
 
-**`onbeforeunload`  `onblur`  `onerror` `onfocus` `onhashchange`**
+**`onbeforeunload`  `onblur`  `onerror` `onfocus` `onhashchange`  `onload` `onmessage`   `onpopstate`  `onresize`   `onstorage`  **
 
+> 单词应该多认识吧  storage ：仓库;;  
+>
+> 不加载前     失去焦点时    文档加载错误时     哈希值改变时     加载完成时    文档接受到消息时     
+>
+> popstate 回退历史记录时     文档尺寸改变时    当storage( local storage 或 session storage ) 改变时。 
+
+
+
+## 内容分区
+
+**` <address>`  `<article>` `<aside>` `<footer>` `<header>`  `h1-h6` `hgroup` `<main>` `<nav>` `<section>` **
+: group : 组 的意思  hgroup： 对标题的分类，处理， 但是已从标准中删除， 不过大部分浏览器还是实现了该功能。
+: 地址 (通讯地址-> 联系信息)   文章   旁白   脚部  头部  标题   组  主内容  导航栏   节( 一小节 )
+
+**上面这些都是以内容作为分区， 就是一个页面常常需要的结构**
+
+### `<address>`  联系信息
+> 默认样式 ： display : block; font-style: italic;   也没有什么特殊的。 
+> 应该是为了增强 语义化。 
+**语境:** : 联系信息， 真实地址， URL, 邮箱， 电话， 社交媒体， 地理坐标。
+也可以放在 文章的开头指明作者的信息。  不要加入与联系信息无关的内容， 如时间等。
+**注意：** 不能嵌套 其他的块级的语义化的标签, 如 h1, article, section
+接口:  `HTMLElement`
+
+### `<article>`
+> 其意在成为可独立分配的或可复用的结构，如在发布中，它可能是论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。​​
+接口 ： `HTMLElement`
+
+### `<aside>`
+> 通常用于侧边栏
+接口： `HTMLElement`
+
+### `<footer>`
+> 页脚
+接口 ：  `HTMLElement`
+
+### `<header>`
+> 辅助到喊的使用元素
+
+### `<main>`
+> 页面文档的主题内容。  比 估计是要比 article 要范围大， 也是不一定的。
+接口： `HTMLElement`
+
+### `<nav>`
+> 导航栏 ：  菜单， 目录， 索引
+> 对于屏幕阅读障碍的人,可以使用这个元素来确定是否忽略初始内容.
+接口： `HTMLElement`
+
+
+### `<section>`
+> HTML 的独立部分, 一般来说会有包含一个标题。
+接口:  `HTMLElement`
+
+## 文本内容
+> 在body  标签中的块或章节内容。 这些对于 accessibility 和 SEO 哼重要。
+**`blockquote` `dd` `dl` `dt` `div` `figcaption` `figure` `hr` `main`  `pre` `ul` `ol` `li` `p`**
+
+: figure : 数字， 描绘。   
+> difinited list  div: division 划分，  horizontal rule ： hr水平分割线.  caption 标题。  preformat 预格式化
+> unordered list ： ul 无需列表。   order list  list  paragraph ： 段落  quote: 引用， 引述。 
+
+### `<blockquote>`   就是默认是有 缩进的  `<cite>`
+> 块引用， 块引述。 对文章， 内容进行标注， 补充说明。  
+> 引文引文， 就是引用别人的文件， 引用别人的话。  默认有缩进。 *{} 给干掉 了就体现不出来。
+> 默认样式 ： margin-block-start: 1em.
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin-block-start"> 没有见识过的样式，writing-mode, margin-block-start </a>
+接口： `HTMLQuoteElement`
+
+**属性：**  `cite`, 标注引用的信息来源文档或相关的url 
+```html
+<blockquote cite="https://tools.ietf.org/html/rfc1149">
+<!-- https://tools.ietf.org/html/rfc1149 标注下面的内容来源于哪里。  -->
+
+</blockquote>
+
+```
+
+
+### 
+
+### 
 
 
 ### a anchor 

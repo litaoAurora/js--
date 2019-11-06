@@ -10,9 +10,55 @@
 </head>
 
 <body>
-    <div>wdi</div>
+    <div id="app"></div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
-    console.dir( document )
+    
+    var box1 = {
+        template : `
+            <div> {{ msg }} 
+                <input type="text" value="">
+            </div>
+        `,
+        data (){
+            return {
+                msg : '你的'
+            }
+        }
+    };
+    var box2 = {
+        template : `
+            <div> {{ msg }} 
+                <input type="text" value="">
+             </div>
+        `,
+        data (){
+            return {
+                msg : '我的'
+            }
+        }
+    }
+
+
+    var vm = new Vue({
+        el: '#app',
+        template : `
+            <div id="#app">
+                <input type="button" value="点我" @click="fn">
+                <keep-alive include="box2">
+                    <div :is=" con " ></div>
+                </keep-alive>
+            </div>
+        `,
+        components : { box1, box2 },
+        data : { con : 'box1' },
+        methods : {
+            fn(){
+                this.con = this.con== 'box1' ? 'box2' : 'box1';
+            }
+        }
+    })
+
 </script>
 </html>
