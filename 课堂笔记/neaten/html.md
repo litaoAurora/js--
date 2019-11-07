@@ -213,11 +213,50 @@
 </blockquote>
 
 ```
+### `<dl>` `dt`
+> 自定义列表
+```html
+<dl>
+    <dt>
+    <dl>
+</dl>
+```
 
+###  `<dd>`  
+>  用来指明描述列表 `dl` 元素中一个术语的描述
+> 必须要有 一个 dt 元素
+**属性**  `nowrap` : yes | no  ;  默认是 no 。
 
-### 
+### `<div>`
 
-### 
+### `<figure>`  描绘
+> figure 出现， 计算， 描绘 ，认为。 
+> figure 元素代表一段独立的内容， 经常与说明 figurecaption配合使用
+> 作为一个独立的引用单元， 在主文中引用 图片， 插图， 表格， 代码等。 当迁移不会影响主体。
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/figure" > MDN</a>
+
+### `<figcaption>` 标题
+> 做 figure 的标题
+
+### `<hr>` 水平线
+
+### `<ul> <ol> <li>`
+> li : value , type 两属性
+> ol : value ,  type, reversed, start 
+> ul
+
+### `<p>`
+> 段落标签， 内部是不能嵌套其他的块级标签的
+
+### `<pre>`
+> 预定义格式文本。  空格也会被渲染
+同常也会 和 `<code>` 标签联用
+
+**接口：** `HTMLPreElement`
+
+## 内联文本表签
+> 定义一个单词， 一行内容， 或任意文字的语义结构或样式。 
+
 
 
 ### a anchor 

@@ -13,52 +13,109 @@
     <div id="app"></div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
 <script>
-    
-    var box1 = {
+// vuex 共享数据的
+// Vuex.Store 实例的挂载点在哪个地方， 谁和他的子组件就可以拿到 Vuex.Store 的共享数据
+
+// 1  需要一个容器，  2 挂载 
+// 3 必须是计算属性才可以拿到 共享数据。  
+// 3.5  所有的 修改数据的 代码都应该放在 mutations 里. 
+// 4 有异步代码是  在 actions 里放延迟， 时间到了 调用 mutations 来修改 共享数据。
+
+// commit 是 vuex 的实例方法，  用来触发 mutations 里面的方法
+// dispatch 也是 vuex 的实例方法， 用来触发 actions 来 里的方法
+
+    let store = new Vuex.Store({
+        state : { msg : '', count:5, price: 10 },  // 这里放共享数据。
+        strict : true,
+        // 所有修改数据的逻辑都应该是要放在 mutations 中
+        // 但是 mutations 不能 包括异步操作。 
+        mutations : {
+            setMsg( state, val){
+               // this.state.msg = this.str
+               state.msg = val
+            }
+        },
+        // 异步在哪 放在这里
+        actions : {
+            aSetMsg(state, val){
+                setTimeout(function(){
+                    store.commit( 'setMsg', val )
+                },1000)
+            }
+        },
+        // 在 容器内处理 计算数据 getter == conputed
+        getters : {
+            total(state){   // 这个 total 和 computed 类似, total 自动添加到 state 里去
+                // this.state.count * this.state.price
+                return state.count * state.price;
+            }
+        }
+
+    })
+
+    let box1 = {
         template : `
-            <div> {{ msg }} 
-                <input type="text" value="">
+            <div> 
+                <input type="text" v-model='str' />
+                <input type="button" value="数据传递"  @click=" sendData " />
             </div>
         `,
-        data (){
-            return {
-                msg : '你的'
+        data(){
+            return { str: "" }
+        },
+        methods : {
+            sendData(){
+                // this.$store.state.msg = this.str ; 
+                // this.$store.commit( 'setMsg', this.str )  // 同步用这个
+                this.$store.dispatch( 'aSetMsg', this.str )  // 异步用这个
+                // new vuex.Store  的挂载出叫 store, 所以 用 this.$store 来拿到
+                console.log( this, 'box1--------------', vm == this, vm.isPrototypeOf( this ) )
+                // 经过 测试 vm 并不在 box1 的实例上， 
             }
         }
     };
-    var box2 = {
+    let box2 = {
         template : `
-            <div> {{ msg }} 
-                <input type="text" value="">
-             </div>
-        `,
-        data (){
-            return {
-                msg : '我的'
-            }
-        }
-    }
-
-
-    var vm = new Vue({
-        el: '#app',
-        template : `
-            <div id="#app">
-                <input type="button" value="点我" @click="fn">
-                <keep-alive include="box2">
-                    <div :is=" con " ></div>
-                </keep-alive>
+            <div> 
+                <input type="button" value="test" @click="test" />
+                <p> {{ msg }} </p>
             </div>
         `,
-        components : { box1, box2 },
-        data : { con : 'box1' },
+        // computed : {
+        //     msg(){
+        //         console.log( this, 'box2----------------' )
+        //         return this.$store.state.msg;
+        //     }
+        // },
+        data(){
+            return { msg : '' }
+        },
         methods : {
-            fn(){
-                this.con = this.con== 'box1' ? 'box2' : 'box1';
+            test(){
+                this.msg = this.$store.state.msg;
             }
-        }
+        },
+        //  可以得出 computed 是可以立马响应， 也可以放在 methods 中去哪数据。 
+    }
+
+    let App = {
+        template : `
+            <div id="app">
+                <div is="box1" > </div>
+                <div is="box2" > </div>
+            </div>
+        `,
+        components : { box1, box2 }
+    };
+
+    let vm = new Vue ({
+        el : '#app',
+        render : h=>h(App),
+        store
     })
+    
 
 </script>
 </html>

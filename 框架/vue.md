@@ -388,7 +388,36 @@ this.$on  ( '事件名' ，  事件句柄 )  // on 是绑定一个 事件。和 
 
 -   **`data`**  :   在此 必须是以个函数， 保证每个实例的数据都是唯一的。 
 -   **`template`**   :   定义模板，  如何用组件？？ 就是写在 template 属性这里。
--   **`props`**  :   通过 props  在实例中接受数据， 用于实例之间的数据通信， 共享。
+-   **`props`**  :   通过 props  在实例中接受数据， 用于实例( 父传子的数据共享 )之间的数据通信， 共享。
+
+```js
+选项 / 数据 ( this.数据 )
+data( 定义数据 )   methods( 方法 )   props( 接受父组件的参数 )  computed( 计算数据 ) /每一个新的。  
+propsData( 创建new 实例 )  watch ( 添加侦听 )
+
+选项 / DOM  ( DOM 是与模板有关的 )
+el ( 根,挂点 ) ,  template ( 模板 ) , render ( createElement, 构建虚拟节点 ), renderError(没), 
+  
+生命   ( 生命周期钩子 )
+beforeCreate created  beforeMount  mounted  beforeUpdate  updated  
+activated( 动态组件的激活 ) deactivated ( 动态组件的冻结 )
+beforeDestroy  destroyed( 销毁 )  errorCaptured ( 没, 捕获子组件的错误 )
+
+选项 / 资源  ( 什么是资源 )
+directives(没， 自定义指令)  filters( 过滤 )  components( 组件 )  
+
+选项 / 组合  ( 什么是组合 )
+parent( 父组件,父实例 )  mixins( 继承, 混入)  extends( 扩展 )  provide / inject ( 主要为高阶插件 )
+
+选项 / 其他 ( 都没见过 )
+name delimiters functional model(  ) inheritAttrs  comments 
+
+
+```
+
+
+
+再回想起： 我当初就是不知道要干嘛的。 
 
 
 
@@ -677,7 +706,10 @@ diff 算法： 前后比较， 最小化DOM 操作。
 > >   销毁后就不会再再有 数据以视图的更新， 但是 : 数据于然存在。 只是数据的变化并不会触发视图的变化
 
 ### vm.$nextTick  视图更新后触发
-
+我对 newxtTick 的功能还完全不是很了解。
+```js  
+this.nextTick( ()=>{} )  // 只触发一次， 用于了解数据的变化
+```
 
 
 ### 图片的 Onload, window, XMLHttpRequest
@@ -807,13 +839,165 @@ diff 算法： 前后比较， 最小化DOM 操作。
 
 
 
+脚手架 ： 工作平台
+
+
+
+##  v-slot 插槽 ， `<slot>`
+
+> 更利于内容分发， 为了不足 is 的不足。 把内容留下来
+>
+> **把对应的内容分发到相应的位置**
+
+> `<slot></slot>`  可以用， 但是以废弃。 
+>
+> ​			slot 本质是个站位符， 把位置留出来让给符组件插入内容
+
+
+
+```html
+
+
+
+```
+
+
+
+## 选项 directive 自定义指令  directives 
+
+```js
+
+// el 是添加了自定义指令的元素，  binding 是一个对象值{}
+Vue.directive( 'background', function(el, binnding){
+    el.style.background = binding.value;
+} );
+//  可以自定以封装一个拖坠指令。 
+
+```
+
+
+
+## vuex
+
+> 任意两个组件间数据共享都能使用 vuex. 
+
+k
+
+> 核心概念 ：  **`state `  `strict`  `mutations`  `actions`  `getters`**
+
+
+
+**调试中遇到的问题，注意事项: ** 
+
+ **1 mutations 里的函数return 是没有效果的。 外面是拿不到放回值得。 是个回调函数**    
+
+**2  getters 和 state 里的数据是分开的，  mutations 里的函数所拿的参数 是 `state`  选项 **
+
+
+
+```html
+<div id="app"></div>
+
+<script>
+ // do no 
+let store = new Vuex.Store({
+  	state : { msg : '', count:10, price : 5 },
+    strict : true,  // 使用严格模式,  
+  // 修改数据的逻辑 也因该写在 这里
+  	mutations : {
+      setMsg(state, val){  // state 是 state 里的数据。 那不到 getters 监听的数据的。 
+       // this.$store.state.msg = this.str
+        state.msg = val 
+        
+      }
+    },
+  	actions :{
+       aSetMsg( store, val ){
+         	setTimeout(function(){
+             store.commit( 'setMsg', val );
+          }, 1000)
+       }
+    },
+   // vuex 中的 计算属性
+	  getters : {
+       total(state){
+          return state.count * state.price;
+       }
+    }
+});
+    
+  
+let box1 = {
+  template : ``
+  data(){
+     return { str: '' }
+  },
+  // 拿数据必须是放在 computed 里
+  // 设置数据是放在 methods 
+   methods : {
+      setMsg (){
+          this.$store.commit( 'setMsg', this.str )
+        	// 这里的 this 是 box1 , stroe的挂载点在 vm哪里, 
+        	// 经过测试 vm 并不在 box1 的继承链上, Vue 会默认的将 store 挂载在自身和子组件上。 
+      }
+   }
+};
+let box2 = {
+   template : `{{ msg }}`,
+   computed : {
+      msg(){
+         retuen this.$store.state.msg;
+      }
+   }
+}
+  
+let vm = new Vue({
+  el : 'app',
+  components : { box1, box2 }
+  store : store  // Vuex 实例的挂载点。 
+})
+  
+
+</script>
+
+```
+
+
+
+### 本地存储,  localStorage,  sessionStorage, cookie
+
+> localStorage,  sessionStoreage, cookie
 
 
 
 
 
+# 遇到的 Error 
 
 
+
+
+
+```js
+Error in render: "RangeError: Maximum call stack size exceeded" // 追踪尺寸过渡。 最大追踪范围。 
+
+found in
+
+---> <CreateInfo>
+       <Anonymous>
+computed 中 return 了一个 没有在 data 或其他地方声明的 属性。  范围异常， 就是存在不存在的异常。 
+         
+-----------------------------------------------------------------------------------------
+  
+Unknown custom element: <infoTable> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
+found in
+// 不知道 custom的 定做元素， infoTable , 你有正确地 correctly 注册过 这个组件吗，  
+// 递归这个组件， 提供 这个 名字的选项。 
+         
+         
+
+
+```
 
 
 

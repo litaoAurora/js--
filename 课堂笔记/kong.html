@@ -6,90 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-    <style>
-        #div1 {
-            width: 100px;
-            /* height: 500px; */
-            margin: 0 auto;
-            background: red;
-        }
-
-        select {
-            width: 100px;
-            height: 100px;
-        }
-
-
-        select option:selected {
-            color: red;
-            background: red;
-            font-size: 18px;
-        }
-    </style>
-
-    <script>
-        
-
-
-        window.addEventListener('DOMContentLoaded', function () {
-            function mybgc() {
-                var bgc = {
-                    // "red": ['*'],
-                    "maroon": ['header', 'div', 'footer'],
-                    "blue": ['article', 'section', 'nav', 'aside'],
-                    "aqua": ['img'],
-                    "background": ['input'],
-                    "teal": ['span', 'i'],
-                }
-                for (var col in bgc) {
-                    if (bgc.hasOwnProperty(col)) {
-                        // console.log(col)
-                        var newli = [];
-                        for (var i = 0; i < bgc[col].length; i++) {
-                            // console.log(bgc[col][i], bgc[col][i])
-                            var tag = document.querySelectorAll(bgc[col][i]);
-                            // console.log(tag, bgc[col][i])
-                            if (tag.length > 1) {
-                                Array.from(tag).forEach(function (item, i) {
-                                    item.style += `outline:1px solid ${col};`;
-                                })
-                            }
-                        }
-                    }
-                }
-            }
-
-
-
-
-        })
-
-
-    </script>
-
 </head>
 
 <body>
-    <div id="dod">wode</div>
-    <div>
-        wodf ds ds f 
-    </div>
-    <div>
-        peizhf d 
-            <a href=""></a>
-            <img src="" alt="">
-    </div>
-
+    
+    <dl>
+        <dt>tou</dt>
+        <dd nowrap="yes">身体</dd>
+    </dl>
+    <figure>
+        doef
+        <code>
+            lifkfjk
+        </code>
+        <figcaption>
+            indd
+        </figcaption>
+    </figure>
+    
+    <ul>
+        <li>0</li>
+        <li>1</li>
+    </ul>
+    <ol value>
+        <li>2</li>
+        <li>3</li> 
+        <li>4</li>
+    </ol>
 </body>
 <script>
-    document.querySelector(".conold")
-
-    var a = document.querySelector("#dod");
-    console.log(a)
-    // a.style.outline = '1px solid red;'
-    a.style = 'outline:2px solid red;';
-    // a.style += 'border: 1px solid green;';
+    // console.log(document.getElementsByTagName('ul')[0])
+    // console.log(document.getElementsByTagName('li')[0])
+    // console.log(document.getElementsByTagName('li')[0].value, '0li value')
+    // console.log(document.getElementsByTagName('li')[1].value, '1li value')
+    console.log(document.getElementsByTagName('li')[2].value, '2li value')
+    console.log(document.getElementsByTagName('li')[3].value)
+    console.log(document.getElementsByTagName('li')[4].value)
 </script>
-
 </html>
