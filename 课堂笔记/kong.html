@@ -33,6 +33,7 @@
         <li>3</li> 
         <li>4</li>
     </ol>
+    <div id="app"></div>
 </body>
 <script>
     // console.log(document.getElementsByTagName('ul')[0])
@@ -42,5 +43,34 @@
     console.log(document.getElementsByTagName('li')[2].value, '2li value')
     console.log(document.getElementsByTagName('li')[3].value)
     console.log(document.getElementsByTagName('li')[4].value)
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
+
+<script>
+
+
+var a = 55;
+
+var App = {
+    template : `
+        <div id="app">
+            <div>
+                {{msg}}
+            </div>
+        </div>
+    `,
+    computed :{
+        msg (){
+            return a;  // 不是this里面的数据没有响应式
+        }
+    }
+}
+
+var vm = new Vue({
+    el : '#app',
+    render : h=>h( App  )
+})
+
 </script>
 </html>

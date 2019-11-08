@@ -262,3 +262,36 @@
 ### a anchor 
 > : 超链接标签。 实现跳转功能
 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element
+href : Hypertext Reference 。 超文本，  引用
+
+**属性：** 
+`download`      `href`    `ping`      `rel`  `target`          `type`
+下载href地址内容   文本引用    追踪        关系    目标， 在哪里打开     建议类型
+
+接口： HTMLAnchorElement接口： 
+**属性：**
+```js
+
+anchor.hash  哈希
+anchor.href  整个的超文本引用
+anchor.host  主机， 主域名 www.baidu.com
+anchor.origin  原点， 还未明白
+anchor.port  
+anchor.protocol  协议
+anchor.rel     关系
+```
+
+### `<abbr>`  abbreviation
+> 缩写元素 ;   abbreviation 缩写的意思。 
+
+**属性**   title 定义对缩写的完整描述。 
+
+接口：  HTMLElement
+
+### `<b>`  bold
+> 吸引读者。  html5 中变得不那么重要的， 最后没有其他标签是才使用他
+> html5 : 
+标题 h  
+强调 用 em  
+重要的 strong  
+标记，高亮 mark.

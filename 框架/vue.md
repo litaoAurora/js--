@@ -1,4 +1,3 @@
-
 vue 
     数据共享
     路由
@@ -8,7 +7,7 @@ vue
                 只能是 Math 这样的 内置对象 可以写在里面， window 的并不能写进。 
     
         指令  :   ->   :class :value  v-if  v-for  v-on ， @click绑定事件
-        computed (计算属性)
+        computed (计算属性)  
         Watch
         过滤器
         自定义指令
@@ -27,6 +26,36 @@ vue
 > DOM 操作是 ： 获取节点， 操作节点
 > Vue : 不会出现 DOM 的操作。 
 构造函数习惯首字母大写。 
+
+w
+
+```html
+目前的总结 ： 
+1 插值表达式 是可以写表达式的。 什么是表达式 操作数 和 操作符
+2 指令 先了解意思 ;   预期是可以 被赋什么类型的值。 
+		v-text : => <span> {{ 向内插入text }} </span>
+		v-html : => <span>  {{ 向内插入html }} </span>
+		v-show : 值为 true/false  =>  显示 或 display:  none 
+		v-if   : true/false   展示 或 被注释(注释就是根本就不进入模板中)
+		v-else :   和 if else  else if 用法一样。 只展示其一
+		v-else-if : 
+		
+		v-for :  根据 for in 来判断重复渲染多少;
+						预期：Array | Object | number | string | Iterable (2.6 新增)
+		v-on  : 缩写 `@` 用于绑定事件 , 对象语法
+				写法有点多 ， 且引出了动态事件 和修饰符 
+			v-on:click=""  v-on="{ click : 'fn1', mousedown : 'fn2' }"  @click.stop.prevent="fn3"
+		v-bind : 缩写 `:`	, 把属性的去值变为变量 :src="path" path 就是一个变量。 得在 this 里面去找
+				修饰符 ：  prop   camel  sync
+				
+
+
+
+```
+
+
+
+
 
 ## 指令
 > v-if:class=""       v-if 指令，     :class 参数
@@ -191,12 +220,13 @@ watch 自定义的数据监听器。   可以写成 对象和 函数
 computed:     如果一个数据依赖别的数据计算得出 都可以用 computed 
 ```js
 // watch 可以监听 data 和 computed 里面的属性。
+data : { proper: '' }
 watch : {
     proper : function (){} // 直接函数 简写
     "proper" : { // 对象 里面加事件句柄 handler  
         deep: true,  // 深度监听
         immediate : true , // 会立即执行一次，触发一次 数据改变。 
-        handler : (newVal, oldVal){  // 会把 新改变的值和 旧的值传进来。
+        handler : (newProper, oldProper){  // 会把 proper新改变的值和  proper 旧的值传进来。
         }
     }
 }
@@ -206,8 +236,10 @@ watch : {
 computed : {  
     tobal(){  // 监听的值是放在这里而不是放在 data 里，  watch 监听的子是放在 data 里的， 差别还有很多
             // tobal 的值是依赖本身的return的值， 在异步函数是不能拿到自身的return 的。 就不能操作异步函数
-        return this.price * this.count;
-    }  // 简写, 就是 get
+        return this.price * this.count;  
+        // 只有 this 里面的数据才有响应式。 其他的不具备响应监听效果。  如 全局 有个 a 数据
+        return a;  // a 是全局数据，会在初始化获取一次， 后续不具备监听效果。 
+    }  // 简写, 就是 get 
     // 全写
     tobal : {
         get(){},
@@ -843,22 +875,28 @@ this.nextTick( ()=>{} )  // 只触发一次， 用于了解数据的变化
 
 
 
-##  v-slot 插槽 ， `<slot>`
+##  v-slot 插槽 ， `<slot>` 父组件把内容分发到子组件就是插槽。 
 
 > 更利于内容分发， 为了不足 is 的不足。 把内容留下来
 >
 > **把对应的内容分发到相应的位置**
 
-> `<slot></slot>`  可以用， 但是以废弃。 
+> **为什么会有插槽： ** 我目前的认为是 在子组件添加到父组件里时， 父组件想动态在模板里向子组件投入内容是有点麻烦的。 
 >
-> ​			slot 本质是个站位符， 把位置留出来让给符组件插入内容
+> <span style="color: blue;font-weifht:bold;">所以插槽的本质是在子组件( 模板 )预先把位置留出来， 让给父模板 动态的把内容投入子组件中。 </span>
+>
+> ​			slot 本质是个站位符， 把位置留出来让给父组件插入内容
+
+<a href="https://cn.vuejs.org/v2/guide/components-slots.html" >插槽 slot 的文档 </a>
 
 
 
 ```html
-
-
-
+<slot></slot>
+<slot name="s1"></slot>
+<p slot="name(s1)" >
+  
+</p>
 ```
 
 
@@ -968,6 +1006,12 @@ let vm = new Vue({
 
 > localStorage,  sessionStoreage, cookie
 
+```js
+localStorage.setItem()    getItem('name')
+JSON.parse('{}')  JSON.stringify( name )
+
+```
+
 
 
 
@@ -994,10 +1038,131 @@ found in
 // 不知道 custom的 定做元素， infoTable , 你有正确地 correctly 注册过 这个组件吗，  
 // 递归这个组件， 提供 这个 名字的选项。 
          
-         
+  ----------------------------------------------------------------------------
+<template v-slot> can only appear at the root level inside the receiving the component
+// 这个<template v-slot> 只能在接受组件的根等级里出现。 
+```
 
+
+
+## 路由 route ， 单页应用
+
+> 这样切换( 响应 )就会快很多。    切换的不同的组件 。 anchor
+
+> 手机上的APP. 
+>
+> ​	原生 app  andr 原生软件。 调用原生 系统底层  api .快。 
+>
+> ​	纯 ： webApp 软件。  完全 web 技术实现的APP.    调用 系统api 就会很慢， 麻烦
+>
+> ​	混合App :   `highbird` 用原生 web 混合。 ———>     **此时就是单页应用的。** 
+
+
+
+插件  ： 
+
+路由重定向。 `redirect`    
+
+路径标签  ： `<router-link to="http://">`   来代替 a 标签， to 来代替 href  填写 路径。
+
+ ```html
+<router-link to="/home"> 
+<a href="#/home" class="router-link-exact-active router-link-active"> 首页 </a>
+-------------------------------------------------------------------------------
+<router-link to="{name : 'name'}"></router-link> //  to  name
+<a href="#/{ name : 'home' }" class=""> 首页 </a>
+  
+  // 把配置对象传入 实例。 
+let = new VueRouter({
+		routers : [
+         { 
+             path : '/home',
+             component : home,
+             name : 'home' // 给path 取个名字
+         },{}    
+		]             
+})
+
+
+
+ ```
+
+**嵌套路由**
+
+```html
+
+let router = new VueRouter({
+		routers : [
+				{
+					path: `/home`,
+					component: home,
+					name : 'name',
+					children : [{path: '/home/phone', ...  redirect: ''}]
+				}
+		]
+})
+```
+
+
+
+**router 属性**
+
+<img src="https://s2.ax1x.com/2019/11/08/MV2D3T.png" style="float:left;"  />
+
+
+
+
+
+
+
+## axios  请求 第三方ajax 库。 
+
+> fetch  替代原生的 ajax 方案
+
+
+
+## 动态路由
+
+组件永远只有一个， 没有组件被隐藏， 没有组件被
+
+在组件切换，只是在动态改变组件的内容.  
+
+
+
+检测路由的跳转： ``
+
+```html
+
+<script>
+
+  // 监听是 getter 和 setter 。 所有的都是基于 这两者。 
+  
+  watch: {  // watch 是可以监听 this 内的所有的数据的变化的， 只要是 在this内。 
+      "$route.path"(){   // "$route" 并不是 路由实例。 
+        
+      } 
+  }
+  
+
+</script>
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
