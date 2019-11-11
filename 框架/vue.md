@@ -22,6 +22,12 @@ vue
         状态
         路由 。 
 
+**vm的直接属性探究**
+```js
+vm.$el ;   // 就是一个根元素标签。 
+
+```
+
 > 区别于 DOM 操作。 是居于 **数据驱动**。
 > DOM 操作是 ： 获取节点， 操作节点
 > Vue : 不会出现 DOM 的操作。 
@@ -40,8 +46,9 @@ w
 		v-else :   和 if else  else if 用法一样。 只展示其一
 		v-else-if : 
 		
-		v-for :  根据 for in 来判断重复渲染多少;
+		v-for :  根据 for in 来判断重复渲染多少;  
 						预期：Array | Object | number | string | Iterable (2.6 新增)
+						注意的事项：  对数组的解构 (item, i ) 值 和 键。 
 		v-on  : 缩写 `@` 用于绑定事件 , 对象语法
 				写法有点多 ， 且引出了动态事件 和修饰符 
 			v-on:click=""  v-on="{ click : 'fn1', mousedown : 'fn2' }"  @click.stop.prevent="fn3"
@@ -421,6 +428,7 @@ this.$on  ( '事件名' ，  事件句柄 )  // on 是绑定一个 事件。和 
 -   **`data`**  :   在此 必须是以个函数， 保证每个实例的数据都是唯一的。 
 -   **`template`**   :   定义模板，  如何用组件？？ 就是写在 template 属性这里。
 -   **`props`**  :   通过 props  在实例中接受数据， 用于实例( 父传子的数据共享 )之间的数据通信， 共享。
+    -   `props : [ zhi ]`  里面的 zhi 是可以直接 this.zhi  
 
 ```js
 选项 / 数据 ( this.数据 )
@@ -738,7 +746,10 @@ diff 算法： 前后比较， 最小化DOM 操作。
 > >   销毁后就不会再再有 数据以视图的更新， 但是 : 数据于然存在。 只是数据的变化并不会触发视图的变化
 
 ### vm.$nextTick  视图更新后触发
-我对 newxtTick 的功能还完全不是很了解。
+我对 newxtTick 的功能还完全不是很了解。 
+> 目的是操作 DOM ;  在数据变化后，视图还没有变化 可以手动调用 nextTick(callback) 函数
+> 功能也还没有 很了解。
+
 ```js  
 this.nextTick( ()=>{} )  // 只触发一次， 用于了解数据的变化
 ```
@@ -1150,6 +1161,91 @@ let router = new VueRouter({
 
 
 
+### 动态路由的 缓存切换 的 监听
+
+>  思路 ： 1 watch 监听this中的值 。  2 ` beforeRouterUpdate `    拦截钩子
+
+
+
+```js
+
+```
+
+
+
+
+
+- **`beforeRouterUpdate( to, form, next )`**
+
+  - `to`    去哪个 path
+  - `form`   从哪个path 中来
+  - `next()`    是否放行。 此方法不调用是 路由跳转不了的。
+    - 触发时机 ： **在当前路由切换到别的路由， 再由别的路由切换到 这个路由时触发。  **
+
+- 何时用？ 为什么要用？？
+
+  - 在路由发生改变，且是当前的组件复用时调用。
+
+    
+
+  - 还未明白
+
+
+
+## 路由拦截， 当路由跳转且组件跳转时
+
+- **在路由跳转时要做逻辑判断是考虑**
+- **`beforeRouterEnter( to, form, next )`**    ： 只在路由创建时触发一次。
+  - 触发时机： 在跳转到当前组件前触发。 **当前组件还没有创建** 
+  - Enter 里的  `next( callback ) `   的回调函数是要在 当前组件创建完时才触发。 **是最后执行的**   
+    - callback( self )  是当前组件的实例。 因为当前组件已创建完了。 
+  -  **注意点：**    Enter 钩子的this 是指向` window`的。  
+
+
+
+-  **`beforeRouterLeave( to, form, next )`**
+
+  - 逻辑差不多
+
+  
+
+### 全局拦截
+
+- 对所有的组件跳转都有效。 
+
+-  ∫å ß   ∫ µ¬πøπø∆˙©ƒ∫µ   这些字符是 alt + key 大映出来的
+
+
+
+-  **`beforeEach( to, form, next )`**  每一个组件的切换
+-  **`beforeEach( to, form )`**
+
+
+
+## 请求拦截 和 响应拦截
+
+> 用 于 拦截 请求配置项， 和响应的 数据处理
+
+> 
+
+> 这个解决了我之前的 写请求配置的 烦恼
+
+```js
+( 拦截的概念是： 类似于流水线的 毛坯 在这个流程 中到某个时刻，某个部门 该为这个毛坯添加，修改点什么。  )
+( 那么此时此刻 就只有你可以操做 这个毛坯， 应该就是拦截的最简单的 构建 )
+( 根据这个逻辑 return 是不能少的。 因为你放回别人就那不到 这个毛坯 )
+
+// 全局拦截
+axios.interceptos.request.use( function(resolve){}, function(reject){} )
+
+axios.interceptos.response.use(  )
+
+// 局部拦截, 写在配置对象里面
+axios({
+    transformRequest : [ function(data, headers){  return data } ]，
+    transformResponse : [ function(data){ return data } ]
+})
+```
 
 
 
@@ -1157,10 +1253,32 @@ let router = new VueRouter({
 
 
 
+## 请求配置 
 
 
 
+```js
 
+// 库的默认值的下一级就是 全局的默认值
+const instance = axios.create({     // 这个就是 可的默认值
+  baseURL : 'https//api.example.com'
+});
+
+// 全局的默认值, 可以先定义好全局的默认值, 在 用私有的覆盖
+axios.defaults.baseURL = 'https://api.example.com';
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   // 请求头的 common
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+// 实例的默认的下一级就是 每次请求的私有
+axios( {
+   method : 'GET'
+} )
+
+```
+
+
+
+-  **顺序 ：  axios.create() - >  axios.defaults.baseURL= '全局配置'   ->    axios( { 私自的最高 } ) **
 
 
 

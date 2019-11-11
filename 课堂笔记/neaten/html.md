@@ -51,7 +51,7 @@
 切改变的是 `text` 与 value 无关. 
 提问？ 在Vue 中如何实现它 text 的数据双向绑定？？？？ 
 
-### contextmenu 上下文菜单。 浏览器的默认性为事件也叫 contentmenu
+### contextmenu 上下文菜单。 浏览器的默认行为事件也叫 contentmenu
 > 只有火狐支持， 右键点击时出现
 
 ### data-*  自定义数据属性
@@ -295,3 +295,276 @@ anchor.rel     关系
 强调 用 em  
 重要的 strong  
 标记，高亮 mark.
+
+
+
+###  `<bdi>`
+
+> 文本双向隔离  . 还不懂 
+>
+> 会隔离可能以不同方向进行格式化的外部文本. 
+>
+> 当不知道是从什么方向嵌入文本，如来自于数据库的文本（有起数据库的文本方向）的时候，该元素是十分有用的。
+
+
+
+###  `<bdo>`
+
+> 用于覆盖当前文本朝向
+
+
+
+### `<br>`
+
+> 换行
+
+接口 ：` HTMLBRElement`
+
+<br>
+
+
+
+### `<cite>`   以般 用在 blockquote 里面
+
+> 表示一个作品的引用。 
+>
+> 它必须包含引用作品的符合简写格式的标题或者URL，它可能是一个根据添加引用元数据的约定的简写形式。
+
+接口 ： `HTMLElement`     firefox : `HTMLSpanElement`
+
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/cite">MDN address</a>
+
+
+
+### `<code>`   一般与 pre 标签联用
+
+> 书写代码的标签
+>
+> 
+
+
+
+
+	<code>
+			function(){
+				console.log(this)
+			}
+	</code>  
+
+<code>console.log( 'the style of code' )</code>
+
+
+
+### `<data>` 与机械可读
+
+> 一个指定内容和机器可读的翻译联系在一起。但如果内容是与 time 或者 date 相关的，一定要使用 [``](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/time)。
+
+
+
+### `<dfn>`  表示术语的定义
+
+<dfn>递归 ： recursion</dfn>
+
+### `<em>`  强调文本， 重读
+
+> `emphsize` 强调
+
+> 产生斜体的效果
+
+<em>我是签掉标签  i is a emphsize</em>
+
+### `<i>`  区分普通文本的一系列文本
+
+> 例如技术术语， 外文短语
+
+<i>我是 i 标签  i is a iteral</i>
+
+### `<kbd>`   ： 表示键盘的键位
+
+>  **key borad**   表式键盘的键位
+
+<kbd>ctrl + s</kbd>
+
+
+
+### `<mark>`  高亮标签‘
+
+<mark>表示为引用或符号目的而标记或突出显示的文本，这是由于标记的段落在封闭上下文中的相关性或重要性造成的。</mark>
+
+
+
+### `<q>`  短的行内文本
+
+```html
+<q cite="http://en.wikipedia.org/wiki/Kenny_McCormick#Cultural_impact">
+     Oh my God, you/they killed Kenny!
+   </q>
+```
+
+<q cite="http://en.wikipedia.org/wiki/Kenny_McCormick#Cultural_impact">
+     Oh my God, you/they killed Kenny!
+   </q>
+
+###  `<ruby>`  用来展示东亚文字的拼音或字符注释
+
+<ruby>
+漢 <rp>(</rp><rt>han</rt><rp>)</rp>
+字 <rp>(</rp><rt>zi</rt><rp>)</rp>
+</ruby>
+
+### `<rb>`  ruby base element  `<rp>`rp  `<rt>` 
+
+> 是 ruby 标签的子元素 ,  title, top  rp 
+>
+> rb  ruby base element   rp    rt 
+
+<ruby>
+漢 <rp>(</rp><rt>han</rt><rp>)</rp>
+字 <rp>(</rp><rt>zi</rt><rp>)</rp>
+</ruby>
+
+```html
+<ruby>
+  漢 <rp>(</rp><rt>han</rt><rp>)</rp>
+  字 <rp>(</rp><rt>zi</rt><rp>)</rp>
+</ruby>
+
+<ruby>
+  <rb>漢</rb>字
+  <rp>(</rp><rt>han</rt>zi<rp>)</rp>
+</ruby>
+```
+
+
+
+### `<del>`  `<ins>`  `<s>`  编辑标识
+
+> del  delete    表示从文本中删除的文字内容
+
+> ins  insertion 插入文本   样式是下划线   b表示是 插入到文中的内容
+
+> s  删除线来渲染文本； 仅仅用来表示样式
+
+<del>this is a del</del>
+
+<ins>this is a new insert wort</ins>
+
+
+
+### `<samp>`  计算机的程序输出
+
+> **samp :  定义范例计算机代码**  
+
+
+
+<samp>output typeof Object</samp>
+
+
+
+### `<small>`  附属和注释
+
+> **个元素被重新定义为表示边注释和附属细则，包括版权和法律文本。**
+
+> 样式是 是文字变小
+
+
+
+刑法<small>：风萧萧兮易水寒</small>
+
+
+
+### `<span>`
+
+
+
+### `<sub> `  下标   subscript 
+
+
+
+我是 <sub>下标</sub>
+
+### `<sup>`    super
+
+我是 <sup>我是上标</sup>
+
+###   `<time>`  表示时间或日期
+
+**属性** ： **datetime**
+
+<time>20:00</time>
+
+
+
+### `<var>`  定义变量
+
+<var>x = y + 2 </var>
+
+## 图片和多媒体
+
+> **`area    audio 	img	 map 	track 	video  `**
+
+>  区域       音频     图片      映射       追踪        视屏
+
+
+
+### `<area>`  热点区域
+
+
+
+> 兼容性是个问题
+
+i
+
+接口 ： **HTMLAreaElement**
+
+**属性 ：** 
+
+-  `acceskey`   访问键位 ： 获得焦点的快捷键
+-  `alt`  alteration  代替
+-  `coords`   坐标,  了解这个属性是重点
+  - 矩形 ： (x1,y1),(x2,y2)  圆形 ：  x, y, r
+-  `download`   属性存在，把超链接作为下载资源
+-  `href`    area  的超链接
+-  `hreflang`   链接资源的语言类型
+-  `media`    定义媒体资源的类型
+-  `rel`   包含 href 的锚， 用于描述 指定目标与链接的关系
+-  `shape`    定义形状
+-  `target`   
+-  `type`  类型
+
+
+
+###  `<audio>`  音频标签
+
+接口 ： `HTMLAudioElement`
+
+
+
+### `<img>` 
+
+> 支持的格式 ： **`jpeg`  `gif`   `png`  `apng`  `svg`    `bmp`  `ico`  `pngico`**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
