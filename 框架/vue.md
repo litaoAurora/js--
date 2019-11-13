@@ -1052,6 +1052,18 @@ found in
   ----------------------------------------------------------------------------
 <template v-slot> can only appear at the root level inside the receiving the component
 // 这个<template v-slot> 只能在接受组件的根等级里出现。 
+
+--------------------------------------------------------------------------------
+Unknown custom element: <router-view> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
+不认识的 custom 顾客 元素 <router-view> 你有正确的注册 这个 组件吗？ 
+我的翻译： 遍历了一遍 组件的集合， 没有发现 有这个 'name' 名字选项。 
+正确的  :  对于 递归组件， 请确保提供 'name' 选项。 
+provide 提供  recursive 递归。  make sure 确保。 
+
+解决是 :  vue.use( VueRouter )
+
+
+
 ```
 
 
@@ -1248,6 +1260,14 @@ axios({
 ```
 
 
+## 在处理数据的注意事项
+- this.$router  ： 是 router 的实例
+- this.$route   ： 是 当前页面路由的信息
+- vuex 和 axios 回来的数据会混淆。 
+	- vuex : this.$store.state[ 'data' ]   这个是 vuex 定义共享的的数据
+	- axios : .then(function(data){ 
+		data.data
+	 }) 
 
 
 
@@ -1281,7 +1301,12 @@ axios( {
 -  **顺序 ：  axios.create() - >  axios.defaults.baseURL= '全局配置'   ->    axios( { 私自的最高 } ) **
 
 
+### vue 的 UI 框架
+> 在Vue中使用 UI 框架。 
 
+element-ui -> vue 的插件 一般用于移动端
+iview  ->  pc 端， 后台管理系统
+vux  - > 移动端vue 组件库。 
 
 
 
