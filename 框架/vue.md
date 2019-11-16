@@ -60,7 +60,7 @@ w
 
 ```
 
-
+## 在vue 中的虚拟元素中绑定事件 `element-ul` 里面荡下来的元素 可以加 `native` 修饰符。 
 
 
 
@@ -1062,7 +1062,12 @@ provide 提供  recursive 递归。  make sure 确保。
 
 解决是 :  vue.use( VueRouter )
 
-
+----------------------------------------------------------
+Do not use built-in or reserved HTML elements as component id: div;
+我的翻译 ：   你有使用 已经建立保存的 html 元素名 作为你的组件 id 吗？？  
+系统的翻译 ：不要使用内置或保留的HTML元素作为组件id: div
+built-in : 内置的
+reserved : 保留的
 
 ```
 
@@ -1171,7 +1176,14 @@ let router = new VueRouter({
 
 ```
 
+## 路由守卫分三个等级
 
+1 全局  ( 静态的 ) ： 
+	前 ： router.beforeEach(to, from, next)  router.afterEach(to, from, next)
+2 独享  (实例化的)  ： 
+	new VueRouter{ beforeEnter(),  }
+3 组件内的 ( 组件内的 ) ： 
+	{ template,  beforeRouteEnter(to, from, next) , beforeRouteUpdate(), beforeRouteLeave() }
 
 ### 动态路由的 缓存切换 的 监听
 
@@ -1192,7 +1204,10 @@ let router = new VueRouter({
   - `to`    去哪个 path
   - `form`   从哪个path 中来
   - `next()`    是否放行。 此方法不调用是 路由跳转不了的。
+
     - 触发时机 ： **在当前路由切换到别的路由， 再由别的路由切换到 这个路由时触发。  **
+
+**next 的注意点： next带参数和不带参数是不一样的。带参数会重复触发beforeEach这个钩子。会死循环。** 
 
 - 何时用？ 为什么要用？？
 
@@ -1263,12 +1278,16 @@ axios({
 ## 在处理数据的注意事项
 - this.$router  ： 是 router 的实例
 - this.$route   ： 是 当前页面路由的信息
+
+                : 和 路由跳转的信息。
 - vuex 和 axios 回来的数据会混淆。 
 	- vuex : this.$store.state[ 'data' ]   这个是 vuex 定义共享的的数据
 	- axios : .then(function(data){ 
 		data.data
 	 }) 
 
+- 动态路由的原理： 当锚点变时 当前的 数据变化就好了。 
+- 路由的跳转也是一个 异步函数。 因为有过程。
 
 
 
