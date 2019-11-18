@@ -1180,10 +1180,16 @@ let router = new VueRouter({
 
 1 全局  ( 静态的 ) ： 
 	前 ： router.beforeEach(to, from, next)  router.afterEach(to, from, next)
+  router = new VueRouter()  是个实例的变量。 
 2 独享  (实例化的)  ： 
 	new VueRouter{ beforeEnter(),  }
 3 组件内的 ( 组件内的 ) ： 
 	{ template,  beforeRouteEnter(to, from, next) , beforeRouteUpdate(), beforeRouteLeave() }
+
+  - beforeRouteUpdate 的 触发机制有点问题 , **组件复用时触发**
+  - beforeRouteEnter  渲染组件时触发
+    - 我的误会是 认为进入这个组件是触发。   真实是渲染该组件时触发。  如果是动态路由 该组件子在第一次渲染时触发。
+
 
 ### 动态路由的 缓存切换 的 监听
 
@@ -1327,6 +1333,10 @@ element-ui -> vue 的插件 一般用于移动端
 iview  ->  pc 端， 后台管理系统
 vux  - > 移动端vue 组件库。 
 
+
+## 打包的路径问题。 
+
+js内引入图片需要使用 requir 导入。 
 
 
 
