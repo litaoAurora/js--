@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nide {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+<!-- 这是一个挂载点 -->
+</body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<!-- <script src="https://cdn.bootcss.com/babel-polyfill/7.6.0/polyfill.js"></script> -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+
+    console.log( ReactDOM ,"挂载点" , React, "生成虚拟节点")
+
+    let el = React.createElement( 'div', {id: 'news'}, ['1111111',
+        React.createElement( 'p', {key : "wdod"}, ['22222222',
+        React.createElement( 'span' , { key: 'wdod' }, ['33333'] )] )
+    ] );// 标签名  属性，  数据和子节点节点
+    // 为什么 数据和子节点是在一个集合中的呢？  因为是渲染在  内部的。 
+
+    // key 的作用是 在同一级的 区分标识。 
+    // let haha = 'haha';
+    let fn = function(haha,ee){ console.log( this, haha,ee,'this' ) }
+    let func = function(ev, haha){ console.log(this, ev, haha) }
+    let yan = 'gfd'
+    function fnn( ev ){
+        yan = ev.target.value
+        console.log( ev.target.value )
+    }
+    console.log(   [ '马尔扎哈', '无尽的剑圣' ].map( (item,i)=>{ return <li>{item}</li> } ), 'fjdsfjdjsfk++++++' )
+    
+    const ele = (
+        <h1>
+            <p className={ '' } style={{ background: 'red' }} obj={ {wo : 'wo', ni : 'ni'} } > { 'hello' } </p>
+            <div onClick={ fn } > dianjie </div>
+            <input type="text"  onInput={ fnn }  />
+            <div> { yan } </div>
+            <ul className={ [1,2] } >
+                {
+                    [ 123,321 ].map( (item,i)=>{ return <li>{item}</li> } )
+                }
+            </ul>
+        </h1>
+        );
+    console.log( ele )
+
+    ReactDOM.render( ele, document.getElementById('app') ); 
+
+// {} 表达式里面可以写单值, 数组
+// 在 属性 或 子集数据中  {} jsx的插值表达式的 有不同的规则的。 
+// 原理应该是 属性中有默认转字符串的过程 而 子集的的表达式没有。
+// 最好不要写 引用类型。 
+
+// 事件的第一个 字母大写 onClick   this 不指向事件元素。 
+// 如何 知道是哪个 触发了呢?  原生逻辑 用事件源 第一个参数就是。 
+
+
+// 在react 中事件句柄的调用时 系统调用的。 参数也就是 系统传的。 系统只传了一个 事件源参数
+// 如何给事件句柄传参 1 加匿名函数( 在里面只可以引用到全局的变量 )  2 fn.bind(null, 100)，常用。
+
+// 与 vue 的区别 vue 的方法是 定义在 实例的 methods 中的， this 指向实例
+// react 中的函数是在全局中也可以定义 this 指向 unll 或 undefined
+
+
+// react 的是原生 的逻辑。 
+
+        // 数据的响应式 两步  1 更新数据 后 跟新虚拟节点  2 重新挂载虚拟节点到真实节点中。
+            // 这就是响应式的原理。 
+    
+let state = {  a : 'a', b : 'b'  }
+let objItem = state.a;
+objItem = '10';
+state.a = 12
+console.log( state, objItem )
+
+let count = 0;
+let st  = { c : 'c' }
+var hh;
+Object.defineProperty( state, 'a', {
+    set(val){
+        console.log(count++, 'state')
+//        hh = val
+        st.c = val
+    }
+} )
+
+Object.defineProperty( st, 'c', {
+    set(val){
+        console.log(count++, 'st')
+//        hh = val
+//        state.a = val;
+    }
+} )
+
+state.a = '474'
+console.log(  hh )
+ 
+</script>
+
+
+</html>
+
+
+
+
+

@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-          <div id="app">
-              <input type="button" @click="fn(1)" value="red" >
-              <div @click="setColor('color1')"> {{color}} </div>
-          </div>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
         
-	</body>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        
-        new  Vue({
-            el : '#app',
-            data : {
-                flag : null,
-                color1: '',
-                color2: '',
-                color3: '',
-            },
-            methods : {
-                fn(flag){
-                    this.flag = flag;
-                },
-                setColor(index){
-                    this[index] = this.flag;
-                }
-            }
-        })
-        
-    </script>
+    
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script>
+"use strict";
+
+function fn(){
+    console.log(this)
+}
+fn()
+var a = {
+    a : this
+}
+console.log( a)
+console.log( this )
+    
+</script>
 </html>

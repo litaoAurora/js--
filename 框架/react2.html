@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<!-- <script src="https://cdn.bootcss.com/babel-polyfill/7.6.0/polyfill.js"></script> -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+// 1 更新数据后跟新虚拟节点  2 把虚拟节点挂载到根节点
+// 在属性内的表达式与在 子集中的表达式 解析规则不一样。  
+
+// Object.keys
+// Object.values
+// Object.entries  {} => [ [], [] ]
+
+// 函数组件
+// 类组件
+
+// hasOwnProperty  自身属性
+// in              属性存在于 。。的原型链上
+// isPrototypeOf    对象存在于原型链上 
+// instanceof      实例
+
+
+// 每次更新DOM 都是会创建一整个的  DOM 数， 但是 Diff 算法之更新 变化的 DOM 。 
+    let el = null;
+    let arr = ['a', 'f']
+    let state = { a : 'a' , b : "b"}
+
+    function fn(){
+
+        return {
+                    type: 'h1',
+                    props: {
+                        className: 'greeting',
+                        children: 'Hello, world!'
+                    }
+                }
+    }
+
+    function render(data){
+        el = (
+            <ul>
+                { [1,2] + [3]  }
+            </ul>
+        );
+        
+
+        ReactDOM.render( React.createElement(  ), document.getElementById( 'app' ) )
+
+    }
+
+    
+
+    render()
+
+</script>
+
+</html>
