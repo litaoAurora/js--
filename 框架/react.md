@@ -1,11 +1,28 @@
+http://yanhaijing.com/es5/#73 
 
 主体文件， 生成虚拟节点的
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>   专门处理视图的。 
 
 ## 陌生的单词或专业术语。 
-forceUpdate  手动强制之只更新当前组件。 是一个局部更新的方法。 
+forceUpdate  手动强制之只更新当前组件。 是一个**局部更新**的方法。 
     force ： 力量， 武装。 
+
+React.Fragment  react 在挂载根组件时不会删除原先的标签。 而每个组件也需要唯一的根组件就会多出很多 莫名的更标签。 
+                **用 React.Fragmen 这个虚拟标签来代替根标签。**   flag 爆炸，碎片。 
+
+父传子。 
+this.props.msg 子组件用这个， 
+this.props.children 是默认有这这个的子集的。 在父组件引用子组件的 闭合标签中传入的 子集。 **类似于 slop 插槽**。 
+                    children 是个数组。 
+msg = this.msg 父组件传这个
+
+state     和 props 都是个异步追踪的集合。 
+state = {}
+    this.setState( {}, callback )  来修改state 的数据。
+                    setState 是个异步函数， 视图更新完后会调用 callback 。
+
+
 
 ## 错误集合
 ```js
@@ -25,6 +42,7 @@ Uncaught Invariant Violation: Expected onClick listener to be a function, instea
 
 
 es6 class 函数的语法糖。
+class 的实例属性还可以定义在 constructor 函数的外面。 只是不能传参。 
 ```js
 ƒ test() {
     _classCallCheck(this, test);

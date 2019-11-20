@@ -29,6 +29,10 @@
 2. `px` 相对物理屏幕分辨率的 1px
 3. **rem**(root em) **em**( 相对父级文本的字体的倍数 )
 4. `mm,cm ,pt(point)` 物理的绝对单位
+5. `vm` viewpoint width的缩写，视窗宽度，1vw等于视窗宽度的1%。
+        举个例子：浏览器宽度1200px, 1 vw = 1200px/100 = 12 px。
+6. line-height 的单位 1  是字体大小的倍数。 font-size: 12px;  就是 12px * 1 ;
+                0.5  就是 12px * 0.5
 
 ## background ( 背景 )
 

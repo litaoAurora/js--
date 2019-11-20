@@ -479,6 +479,9 @@ maxlength ： 限制内容**字符**的最大长度； maxlength="4"
 - `相邻选择器` `div+p` (同级选择器,同辈且(仅仅)是自己的下一个)  `div 和 p 在同一级`
 - `同辈选择器` `div~div` div 之后的所有 同级div
 
+- 否定选择器  `p:not( :last-child )`  不是最后一个p 的元素。   就是除了最后一个的p 的选择器。 
+
+
 ## 伪类选择器
 - a 好像只能触发四个, **普通只能触发 hover**
 - `:hover` ; ` 划过触发` `hover 能触发所有的`
@@ -746,7 +749,9 @@ index z 轴索引。
 - `em` : `倍数` `相对当前父默认的标签的字体大小`
   `html 默认是 16px，最小字体大小12px` 别的都是 相对`html的` 
 - `rem` : `是根据html根节点来计算的`
-
+- `vm`  : css3新单位，viewpoint width的缩写，视窗宽度，1vw等于视窗宽度的1%。
+        举个例子：浏览器宽度1200px, 1 vw = 1200px/100 = 12 px。
+        1VM  == 100% / 100 = 1%.
 
 ## xml 数据格式
 -xml (Extentsible markup Language 可扩展标记语言)
@@ -1573,3 +1578,6 @@ ctrl  + shift + d : 向下复制；
 div:必须 ,  {} , :  [] ,
 
 站位符的作用： 先占着一个固定的位置， 等你再把值给传进来。 这就是站位符的作用。
+
+
+https://juejin.im/post/5a7172d9f265da3e3245cbca
