@@ -54,6 +54,33 @@ class 的实例属性还可以定义在 constructor 函数的外面。 只是不
 // 其实就是调用了 _classCallCheck() 函数调用检查函数。  
 ```
 
+## 受控组件
+
+5.235:8000
+###  下拉菜单 
+什么时候 option 是选中转态 ?? 
+1 select 的 value 和 option的 value 一样时
+2 option 有 selected 属性时 。 
+
+但是 react 中是不允许option 的selected 的。 
+select 控制
+    value  受控状态
+    defaultValue 是非受控状态。 
+
+```js
+// value 是受控组件
+// defaultValue 是非受控组件
+<select value=""  defaultValue="" >
+
+```
+
+### 输入框的受控 与 textarea
+react 自己定义的 onChange 事件。 次事件与原生事件已经不一样了.
+受控 则添加 value , 有 value 就要添加 onChange 事件。 
+
+
+
+
 # 结论
 
 - 第一次用 bind 改变指向之后， 在用 bind 是不能再改变 this的指向的了。 fn.bind(null);  此后的操作都是 null了。 
@@ -61,7 +88,13 @@ class 的实例属性还可以定义在 constructor 函数的外面。 只是不
 
 
 
+## 生命周期
+(componentWillMount，componentWillReceiveProps，componentWillUpdate)
+都被getDerivedStateFromProps替代。
 
+
+
+试一下这个 ： render 改变 state 。   this.setState( { str : Math.random() } ) 是否能成功。 
 
 
 

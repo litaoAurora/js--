@@ -366,7 +366,7 @@ this.$on  ( '事件名' ，  事件句柄 )  // on 是绑定一个 事件。和 
 
 
 
-## 过滤器  Vue.filter(id, [defined])
+## 过滤器  Vue.filter(id, [defined]) 管道符的过滤。
 
 > 在这里的 过滤器是一个 **自定义一种规则**， 去覆盖原数据的显示， 原数据本身没有改变
 
@@ -454,10 +454,6 @@ name delimiters functional model(  ) inheritAttrs  comments
 
 
 ```
-
-
-
-再回想起： 我当初就是不知道要干嘛的。 
 
 
 
@@ -1019,11 +1015,23 @@ let vm = new Vue({
 
 ```js
 localStorage.setItem()    getItem('name')
-JSON.parse('{}')  JSON.stringify( name )
+JSON.parse('{}')  JSON.stringify( name ) -> 是在提交时才用转换了。 
 
 ```
 
-
+### FormData  接口提供了表单数据的键值对的构造方式
+与
+> 经过 FormData 的数据可以 XMLHttpRequest.send()  方法送出。 
+```js
+var formData = new FromData();
+formData.set(name, value);
+formData.append(name, value)
+formData.delete(name)
+formData.entries(name, value); //  enteries 本质是把值变成可以迭代的东西。 
+formData.get(name, value)
+formData.has(name)
+formData.keys(name, value)
+```
 
 
 

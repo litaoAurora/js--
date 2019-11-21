@@ -12,6 +12,9 @@ alt + r : 正则模式查询
 
 ctrl + j : 向下复制 . 
 
+cmmand + f :  查找匹配。 
+command + D ： 将选择添加到下一个查找匹配.
+
 md : 的 快速 表格 : ctrl  + t 
 
 
@@ -19,3 +22,6 @@ md : 的 快速 表格 : ctrl  + t
 规则 ：
 mb mt mc   current.  mp 上一个
 
+
+
+https://juejin.im/entry/58bb664bac502e006bfeb6d8  隐式转换的帖子。

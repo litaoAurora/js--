@@ -22,41 +22,55 @@
 
 <script type="text/babel">
 
-    console.log( ReactDOM ,"挂载点" , React, "生成虚拟节点")
 
-    let el = React.createElement( 'div', {id: 'news'}, ['1111111',
-        React.createElement( 'p', {key : "wdod"}, ['22222222',
-        React.createElement( 'span' , { key: 'wdod' }, ['33333'] )] )
-    ] );// 标签名  属性，  数据和子节点节点
-    // 为什么 数据和子节点是在一个集合中的呢？  因为是渲染在  内部的。 
+    class Box extends React.Component{
 
-    // key 的作用是 在同一级的 区分标识。 
-    // let haha = 'haha';
-    let fn = function(haha,ee){ console.log( this, haha,ee,'this' ) }
-    let func = function(ev, haha){ console.log(this, ev, haha) }
-    let yan = 'gfd'
-    function fnn( ev ){
-        yan = ev.target.value
-        console.log( ev.target.value )
+        arr = []
+
+        render(){
+            this.props.getData( this.arr )
+            console.log( this.arr )
+            return (
+                <div>
+                    {
+                        this.arr.map((item, i)=>{
+                            return ( <p key={i} > {item} </p> ) 
+                        })
+                    }
+                </div>
+            )
+        }
     }
-    console.log(   [ '马尔扎哈', '无尽的剑圣' ].map( (item,i)=>{ return <li>{item}</li> } ), 'fjdsfjdjsfk++++++' )
-    
-    const ele = (
-        <h1>
-            <p className={ '' } style={{ background: 'red' }} obj={ {wo : 'wo', ni : 'ni'} } > { 'hello' } </p>
-            <div onClick={ fn } > dianjie </div>
-            <input type="text"  onInput={ fnn }  />
-            <div> { yan } </div>
-            <ul className={ [1,2] } >
-                {
-                    [ 123,321 ].map( (item,i)=>{ return <li>{item}</li> } )
-                }
-            </ul>
-        </h1>
-        );
-    console.log( ele )
 
-    ReactDOM.render( ele, document.getElementById('app') ); 
+
+    class Root extends React.Component{
+
+        getData(arr){
+            // 此时 的 this.arr 和 Box 的 arr 是指向同一个地址。 
+            this.arr = arr
+        }
+
+        fn(){
+            this.arr.push(Math.random());
+            // 而 push 是修改原来的数组的。 
+            console.log( this.arr )
+            this.forceUpdate();
+        }
+
+        render(){
+
+            return (
+                <React.Fragment>
+                    <input type="button" value="插入" onClick={this.fn.bind(this) } />
+                    <Box  getData={this.getData.bind(this)} />
+                </React.Fragment>
+            )
+
+        }
+
+    }
+
+    ReactDOM.render( <Root />, document.getElementById('app') ); 
 
 // {} 表达式里面可以写单值, 数组
 // 在 属性 或 子集数据中  {} jsx的插值表达式的 有不同的规则的。 
@@ -79,33 +93,7 @@
         // 数据的响应式 两步  1 更新数据 后 跟新虚拟节点  2 重新挂载虚拟节点到真实节点中。
             // 这就是响应式的原理。 
     
-let state = {  a : 'a', b : 'b'  }
-let objItem = state.a;
-objItem = '10';
-state.a = 12
-console.log( state, objItem )
 
-let count = 0;
-let st  = { c : 'c' }
-var hh;
-Object.defineProperty( state, 'a', {
-    set(val){
-        console.log(count++, 'state')
-//        hh = val
-        st.c = val
-    }
-} )
-
-Object.defineProperty( st, 'c', {
-    set(val){
-        console.log(count++, 'st')
-//        hh = val
-//        state.a = val;
-    }
-} )
-
-state.a = '474'
-console.log(  hh )
  
 </script>
 
