@@ -304,9 +304,10 @@ arr.entries(); // 返回一个新的迭代器对象
 
 简单循环
 for...of 循环
-Array.prototype.every()
-Array.prototype.some()
-Array.prototype.find()
+是以return 来做评判标准的。   
+Array.prototype.every( (item, i)=>{ if(..) return true }  );   // 每一项都是 true 时则 为 true.
+Array.prototype.some(( item, i )=>{})                       //  只要有一项 return true 则为 true. 且终止循环
+Array.prototype.find()                       // 只要 return 了就终止循环。 
 Array.prototype.findIndex()
 这些数组方法可以对数组元素判断，以便确定是否需要继续遍历：every()，some()，find()，findIndex()
 ```

@@ -10,6 +10,11 @@ forceUpdate  手动强制之只更新当前组件。 是一个**局部更新**�
 
 React.Fragment  react 在挂载根组件时不会删除原先的标签。 而每个组件也需要唯一的根组件就会多出很多 莫名的更标签。 
                 **用 React.Fragmen 这个虚拟标签来代替根标签。**   flag 爆炸，碎片。 
+onChange  事件时react 中修改了的事件
+defaultValue
+React.createRef();
+this.input.current; 来获取当前的DOM
+
 
 父传子。 
 this.props.msg 子组件用这个， 
@@ -21,6 +26,9 @@ state     和 props 都是个异步追踪的集合。
 state = {}
     this.setState( {}, callback )  来修改state 的数据。
                     setState 是个异步函数， 视图更新完后会调用 callback 。
+
+ref={}   放在模板中
+    React.createRef()
 
 
 
@@ -81,17 +89,104 @@ react 自己定义的 onChange 事件。 次事件与原生事件已经不一样
 
 
 
-# 结论
-
-- 第一次用 bind 改变指向之后， 在用 bind 是不能再改变 this的指向的了。 fn.bind(null);  此后的操作都是 null了。 
-: 可以得出 react中事件句柄的调用是用 call(null)来调用的。 而我先于 调用前用 `bind` 绑定就this指向不会变了。 
 
 
 
 ## 生命周期
-(componentWillMount，componentWillReceiveProps，componentWillUpdate)
+(   
+    **挂载**
+    constructor ,
+    componentWillMount  , created
+    render              
+    conponentDidMount,
+
+    **更新**
+
+    componentWillReceiveProps,
+    shouldComponentUpdate
+    componentWillUpdate    beforeUpdate
+    render
+    componentDidUpdate      updated
+)
 都被getDerivedStateFromProps替代。
 
+
+## redux 转态管理器
+> 实现原理 利用闭包, 和发布订阅者模式。 
+
+1) **创建一个数据容器 . store = Redux.createStore( reducer )**
+2) **把修改数据的封装逻辑写好, 这个函数是放在   createStore 中或者 放在 combineReducers( {  冲突函数  } )；**
+3) **如何获取共享数据 。  store.getState()**
+4) **如何修改共享数据。 store.despatch 来触发 mutation;**
+5）**监听数据的变化。  subscribe( function(){} )**
+6）**合并多个 store  ; => let reducer =  Redux.combineReducers( { newData, length } )**
+7) **获取合并后的的数据 store.getState().数据名.**
+
+**猜测 ：**                                                                                                                                                                                                                       
+    store.despatch( { type: "", haha : "" } ) 
+    store 中的数据  data = setData( data, { type: "", haha : "" } )
+> 当调用 dispatch 时， store 是会把 本地的 state 和 dispatch传入来的 参数一并传入到  mutation函数中去做逻辑处理，
+> 放回来的值 作为下一个 state 保存到 store本地。 
+
+
+-------------------------------------------------------------------
+```js
+
+let store = Redux.createStore( setData ); //  创建容器
+// setData 是专门用来修改数据的 setData 就是 mutation
+
+// state 就是共享的数据， actions 就是用户行为。 
+function setData( state="默认值", actions ){
+    // 这里return的值是 下一次 传入的 state. 
+    // 也是 getState 拿到的数据。 
+    // 明白这个才是真理。 
+    if( actions.type == 'GET' ){
+        return actions.msg;
+    }
+    // actions 就是 despatch 传入进来的 json 对象。 
+    else{
+        return state;
+    }
+
+
+    switch (action.type){
+        case 'get':
+            return action.fileter
+        default : 
+            return state;
+    }
+
+}
+
+store.despatch({
+    type : 'GET',
+    msg : this.str,
+}); // 来触发，修改数据。 
+// type 是必须的 。 来判断行为。 
+
+store.getState(); // 获取数据。 
+
+store.subscribe( function(){
+    ReactDOM.render( <Root />, document.getElementById('Root') )
+} )
+```
+
+----------------------------------------------------------------------
+
+
+三大原则
+redux 是单向数据流。 单一数据源
+state 是只读的。 
+使用纯函数来修改。 
+
+redux 是 发布订阅者模式。 
+
+
+
+# 结论
+
+- 第一次用 bind 改变指向之后， 在用 bind 是不能再改变 this的指向的了。 fn.bind(null);  此后的操作都是 null了。 
+: 可以得出 react中事件句柄的调用是用 call(null)来调用的。 而我先于 调用前用 `bind` 绑定就this指向不会变了。 
 
 
 试一下这个 ： render 改变 state 。   this.setState( { str : Math.random() } ) 是否能成功。 
