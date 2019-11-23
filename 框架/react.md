@@ -46,6 +46,18 @@ youdao : 未捕获的SyntaxError: /内联Babel脚本:期望对应的JSX结束标
 Uncaught Invariant Violation: Expected onClick listener to be a function, instead got type string
 : 未能捕获不变的冲突 ： 期望onClick 监听器是一个 函数， 而不是得到一个字符串类型。
 
+Uncaught TypeError: /Inline Babel script: Duplicate declaration "Cart"
+me : 未能不活的 类型异常。  在内联babel 脚本中 重复声明 `Cart` ;  大白话就是  cart 重复定义了。 
+youdao : 未捕获的类型错误:/内联Babel脚本:重复声明“Cart”;
+
+Warning: Invalid DOM property `class`. Did you mean `className`?
+me : 警告 ： 无效的 文档属性 class ， 你的意思是 className 吗
+youdao : 警告:无效的DOM属性' class '。你是说“className”吗?
+
+
+Warning: validateDOMNesting(...): Text nodes cannot appear as a child of <table>.
+me : 警告 ： 无效的动作DOmNesting ;  文本节点作为一个孩子显示在table标签中。  
+youdao : 警告:validatedom(…):文本节点不能作为<table>的子节点出现。
 ```
 
 
@@ -116,8 +128,9 @@ react 自己定义的 onChange 事件。 次事件与原生事件已经不一样
 
 1) **创建一个数据容器 . store = Redux.createStore( reducer )**
 2) **把修改数据的封装逻辑写好, 这个函数是放在   createStore 中或者 放在 combineReducers( {  冲突函数  } )；**
+    处理冲突的函数在被传入真正的数据前会被调用多次， 故要 return 一个默认值来。 
 3) **如何获取共享数据 。  store.getState()**
-4) **如何修改共享数据。 store.despatch 来触发 mutation;**
+4) **如何修改共享数据。 store.dispatch 来触发 mutation;**
 5）**监听数据的变化。  subscribe( function(){} )**
 6）**合并多个 store  ; => let reducer =  Redux.combineReducers( { newData, length } )**
 7) **获取合并后的的数据 store.getState().数据名.**
