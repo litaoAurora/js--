@@ -290,6 +290,7 @@ KeyboardEvent-》 keyCode
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent 键盘对象</a>
 
 - `scroll` 滚动事件 与 `srollTop` 等属性可以用
+	- 给有滚动条的DOM元素添加监听。 
 - `resize` 浏览器窗体改变是触发
 - `hashchange` 锚链接改变时触发。**重** **虚拟 dom**
   - -> location.hash
@@ -302,8 +303,11 @@ KeyboardEvent-》 keyCode
 - blur : 可以出来光标的才行。
 - focus : 可以出来光标的才行。
 
-- input
-- change
+- input : 边输入边触发。 
+- change 
+	- input 的输入内容改变是才触发。 
+
+- DOMContentLoaded  ->  文旦骨架加载完就触发。 
 
 ## 事件对象 Event
 

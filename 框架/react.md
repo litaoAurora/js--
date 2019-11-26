@@ -1,4 +1,6 @@
 http://yanhaijing.com/es5/#73 
+https://reacttraining.com/react-router/web/api/Route  router 的英文文档
+
 
 主体文件， 生成虚拟节点的
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -193,6 +195,71 @@ state 是只读的。
 使用纯函数来修改。 
 
 redux 是 发布订阅者模式。 
+
+
+
+## 路由切换时 组件是否会重复创建和销毁??? 
+： 会
+挂载时 ：  contructor  componentWillMount  render componentDidMount
+
+更新时：   componentWillReceiveProps(nextState)   nextProps -> props 
+
+## 如何 路由的父传子 ？？ 
+使用 render属性来代替 component 属性。 
+    <Route path="/home" render={()=>(<Box msg={this.state.msg} />)}>
+    <Route path="/home" render={()=>(<div>1111</div>)}>
+exact 是啥 : 准确的。 路由的重复追踪解决方法。 
+
+## 完全匹配匹配概念 。。   
+vue 的路劲匹配是完全匹配。 
+    url的哈希值默认是 '/'.
+    当url的哈希值完全等于 path 时才跳转组件。 
+
+react 的路径匹配是包含( 是指二级路由的匹配 )匹配。 就是 url 上的哈希值包含path内的路径就可以跳转。 
+'/' 一级
+'/home'  二级  包含 '/' ;  满足 '/home' 也满足 '/'
+'/home/news'  包含 '/home';  满足 '/home/news' 也满足 '/home'
+**exact 就是准确的就是完全匹配的意思**
+
+## 路由的跳转
+this.props.history.push();  为什么要加 props 呢?? .
+history 对象是路由组件自动传给子组件的。 
+
+## 动态路由 什么时候可以用 -> 布局一致但是 数据不同时。 
+组件-个 , 路由选项只有一个。 
+
+## 如何获取当前的路径 
+Vue ：  this.$rout.params.路由参数
+react : this.props.match.params.路由参数。
+
+## react Router 中添加的 props 的选项
+- match
+    - params  ->  动态路由的参数
+    - isExact
+    - path
+    - url
+- location 
+- history  ： 历史记录
+
+## react 但凡手动传了数据就系统不会默认再传入 route的props了
+上面三个选项就会是  undefined. 
+
+
+组件中的 constructor(props){  super(props);}
+
+## 路由中的组件 统一用 render 吧。 既可以传递数据也可以传递 路由参数。 
+<Route path="/:hash" render={(porps)=>( <Box {...porps} data={this.data} > )} >
+
+
+## react的脚手架。 
+vue 的 ：  `vue-cli`  ;  
+
+react 有好几个 脚手架。 
+`create-react-app`  ;    `sudo cnpm install create-react-app -g`;
+
+创建项目文件； 
+`create-react-app reacttest` ;  reacttest 是文件夹名 
+
 
 
 
