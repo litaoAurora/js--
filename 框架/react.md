@@ -1,6 +1,7 @@
 http://yanhaijing.com/es5/#73 
 https://reacttraining.com/react-router/web/api/Route  router 的英文文档
 
+: 既然事件
 
 主体文件， 生成虚拟节点的
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -35,6 +36,9 @@ ref={}   放在模板中
 
 
 ## 错误集合
+语法错误 ： 是系统原生的编辑错误了。                    at
+警告 ： 框架的禁止开发者的错误，或有歧义的语法。          in  
+
 ```js
 Each child in a list should have a unique 'key' prop,
 Check the top-level render call using <div>. 
@@ -60,6 +64,12 @@ youdao : 警告:无效的DOM属性' class '。你是说“className”吗?
 Warning: validateDOMNesting(...): Text nodes cannot appear as a child of <table>.
 me : 警告 ： 无效的动作DOmNesting ;  文本节点作为一个孩子显示在table标签中。  
 youdao : 警告:validatedom(…):文本节点不能作为<table>的子节点出现。
+
+Warning: Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.
+me : 警告 ： 函数不不是react中的一个有效的孩子。 如果这样 会发生Component 来代替<Component />渲染。 或者 你的意思是调用这个函数来而不是返回这个函数。
+youdao : 警告:函数作为一个React子函数无效。如果您从render返回一个组件而不是<Component />，则可能会发生这种情况。或者你想调用这个函数而不是返回它。
+    This 是指代 Functions are not valid as a React child.
+
 ```
 
 
@@ -269,9 +279,7 @@ react 有好几个 脚手架。
 : 可以得出 react中事件句柄的调用是用 call(null)来调用的。 而我先于 调用前用 `bind` 绑定就this指向不会变了。 
 
 
-试一下这个 ： render 改变 state 。   this.setState( { str : Math.random() } ) 是否能成功。 
-
-
+试一下这个 ： render 改变 state 。   this.setState( { str : Math.random() }, ()=>{ console.log('修改成功的回调') }) 是否能成功。 
 
 
 

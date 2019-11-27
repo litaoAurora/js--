@@ -31,8 +31,11 @@
 4. `mm,cm ,pt(point)` 物理的绝对单位
 5. `vm` viewpoint width的缩写，视窗宽度，1vw等于视窗宽度的1%。
         举个例子：浏览器宽度1200px, 1 vw = 1200px/100 = 12 px。
-6. line-height 的单位 1  是字体大小的倍数。 font-size: 12px;  就是 12px * 1 ;
-                0.5  就是 12px * 0.5
+6. line-height 
+  - 1  是字体大小的倍数。 font-size: 12px;  就是 12px * 1 ;0.5  就是 12px * 0.5;   
+  - 100% 也是字体大小的百分比。 易错点。
+  - px 就是相对像素的咯。
+                
 
 ## background ( 背景 )
 
