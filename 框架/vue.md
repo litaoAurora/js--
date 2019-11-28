@@ -1185,6 +1185,7 @@ let router = new VueRouter({
 ```
 
 ## 路由守卫分三个等级
+: 误区 ： 路由守卫是在路由的组件中触发的。 并不是在所有的组件中都能够触发。 
 
 1 全局  ( 静态的 ) ： 
 	前 ： router.beforeEach(to, from, next)  router.afterEach(to, from, next)
