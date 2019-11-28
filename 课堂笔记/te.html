@@ -31,26 +31,7 @@
 </body>
 <script>
 
-    // target  ,  {}   get的参数呢 > 
-    Object.defineProperty( location, "hash" , {
-        get(){
-            console.log('get')
-        },
-        set(){
-            console.log('set')
-        }
-    } )
-
-    var locatHash =  new Proxy(window.location, {
-        get(target, val ){
-            console.log( arguments );
-            return target[val];
-        },
-        set(target, attr, val ){
-            console.log( arguments );
-            target[attr] = val
-        }
-    })
+    
 
 </script>
 </html>
