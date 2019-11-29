@@ -10,21 +10,36 @@
 </body>
 <script>
 
-let b = 3000;
-async function wait (i){
-    n++;
-    let a =  await new Promise( (resolve)=>{ setTimeout(()=>{ resolve( i  ) }, b -= 1000 ) } )
-    console.log(a)
-    console.log( Date.now() - time )
-}
+// let b = 3000;
+// async function wait (i){
+//     n++;
+//     let a =  await new Promise( (resolve)=>{ setTimeout(()=>{ resolve( i  ) }, b -= 1000 ) } )
+//     console.log(a)
+//     console.log( Date.now() - time )
+// }
 
-let time = Date.now();
-var n = 5;
-for(let i = 0; i< 3; i++){
-    console.log(1)
-    wait(i,n)
-}
+// let time = Date.now();
+// var n = 5;
+// for(let i = 0; i< 3; i++){
+//     console.log(1)
+//     wait(i,n)
+// }
 
+// function bb(){}
+// bb = 'bb'
+// console.log( bb )
+
+// var tt = 100;
+// (function tt(){
+//     console.log(tt)
+// })()
+
+// console.log( tt )
+
+function dosomething (){
+    console.log( 'haha' )
+}
 
 </script>
+<script src="./hah.js?callback=dosomething"></script>
 </html>

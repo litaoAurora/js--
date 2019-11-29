@@ -8,7 +8,7 @@
 - host        主机  
 - port        端口  
 - pathname    路径
-- search      参数 -> query ?
+- search      参数 -> query       ?username=jjj&password=...&22222
 - hash        哈希值 ->  flagment #  
 - username
 - password
@@ -17,12 +17,37 @@
 
 
 
-## ajax 
+:  encodeURI  decodeURI , JSON JSON.parse  JSON.strigfy()  FormData FileReader
+## ajax   有兼容性。 
+构造函数   :  XMLHttpRequest()
+IE       :   activeXobject()
 
 #### 属性
-
+```
+状态 ：         readyState      获得当前的状态值 0-4
+响应正文 ：      response
+响应文本 ：      responseText
+响应类型 ：      responseType    值有  "" document json text ...被视为什么作为解析
+响应URL :       responseURL     
+服务端的转态码 :  state            200   404  
+文本状态码 :     stateText   'ok' 'not found'
+响应超时     :   timeout 
+事件追踪器 :     upload  
+XML状态改变事件 : onreadystatechange   对应readyState 的状态。 
+```
+![状态值](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/readyState)
 #### 方法
+```
++ open( method, url, async, user, password )     : 始化一个请求
+- overrideMimeType( Mimetype )        : 指定一个MIME类型用于替代服务器指定的类型
++ setRequesHeader( header, value )    : 设置请求头;  post 的send 需要 ContentType : application/x-www-form-encoded. 
++ send( FormData data )               : 参数 请求主体( 请求数据 )；如果请求方法是 GET,HEAD， null。因为get的请求数据在 url 中。 
+- getAllResponseHeaders()             :   获取所有的响应头
++ getResponseHeader(name)             :   获取所有的响应头
+- abort()                             :   手动终止请求
 
+```
+![open方法](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/open)
 #### 请求方式 与 差别
 
 - get 
@@ -55,3 +80,66 @@ https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660?fr=aladdin
 404 资源找不到  Not Found
 405 请求方法不对 method no allowed 
 
+
+
+
+
+## FileReader  缓冲文本读取
+> io 操作， 渲染， 动画， 等等 需要过程的都是 异步函数
+### 属性
+
+```
+error        : 
+onabort      : 
+readyState   : 表示当前读取状态
+result       : 结果
+```
+
+### 方法
+```
+abort()                      
+readAsArrayBuffer()       
+readAsBinaryString()        
+readAsBinaryString()    
+readAsDataURL()         : 拿缓存的内容url
+readAsText()            : 
+```
+
+
+## FormData  把ajax  要发的数据在这里编码
+> 一种表示表单数据的键值对的构造方式
+
+构造函数 ： 
+    new FormData( <form> )  : form 是 <form> 表单元素
+
+
+## 方法
+```
+append( name, value [, filename] );
+delete( name )
+entries() ;     放回值 是个二维迭代器。 [[name, value],[]]
+get( name );     name 的第一个值。 
+getAll( name );  -> name 的所有值 [value1, value2 ]
+has()  
+keys()        :  Iterator 接口
+values()      :  Iterator 接口
+```
+
+
+
+## 概念
+
+1. 纯对象 -> 上一级的 原型链是 Objct.prototype 就是纯对象
+2. 跨域 浏览器有限制 -> 同源策略 -> 域名 协议 端口相同
+3. 前后端分离 -> 服务器不同， 开发人员 有分
+
+4. 运算符优先级。 ++a 是真的运算符高于 ++a
+静态作用域 (词法作用域)
+
+
+实现跨域的手段 ： 
+1. nginx 反向代理
+2. jsonp 需要后端配合指定数据形式
+3. window.postMessage  -> open(url).postMessage('data', url)
+4. iframe 标签。 
+5. window.domain  www.baidu.com  ->  aaa.daidu.com 可以跨域。。 
