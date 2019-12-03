@@ -125,7 +125,14 @@ keys()        :  Iterator 接口
 values()      :  Iterator 接口
 ```
 
-
+## fetch 
+![fetch语法](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
+与 FileRead 用法差不多。 
+```js
+第一步请求              fetch(url, [,init]), fetch('./data.json', {method, headers, body, mode,...   })
+第二步解析回来的数据      fetch().then((resp)=>{ return resp.json()  }) ; => return 的是 promise 对象
+第三部拿到数据           fetch().then().then((value)=>{ 拿到 value })     
+```
 
 ## 概念
 
@@ -142,4 +149,9 @@ values()      :  Iterator 接口
 2. jsonp 需要后端配合指定数据形式
 3. window.postMessage  -> open(url).postMessage('data', url)
 4. iframe 标签。 
-5. window.domain  www.baidu.com  ->  aaa.daidu.com 可以跨域。。 
+5. window.domain  www.baidu.com  ->  aaa.daidu.com 可以跨域。。
+
+
+
+
+promise 的状态： 有放回的 promise 的状态来决定的。
